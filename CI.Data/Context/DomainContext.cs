@@ -1,4 +1,5 @@
 ﻿using CI.Common.Helpers.DbContextHelpers;
+using CI.Data.Context.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace CI.Data.Context
@@ -13,6 +14,11 @@ namespace CI.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(DbContextHelper.GetConnectionString());
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ConfigureManyToMany();
         }
     }
 }
