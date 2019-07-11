@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CI.Models.Models.ResolveModels;
+using System;
 using System.Collections.Generic;
 
 namespace CI.Models.Models
@@ -22,5 +23,7 @@ namespace CI.Models.Models
         public DateTime UpdatedBy { get; set; }
 
         public User Owner { get; set; }
+
+        public ICollection<UserBoards> Users { get; set; }
     }
 }

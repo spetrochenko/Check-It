@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI.Data.Context
 {
-    internal sealed class DomainContext : DbContext
+    public sealed class DomainContext : DbContext
     {
         public DbSet<Attachment> Attachments { get; set; }
 
@@ -31,7 +31,7 @@ namespace CI.Data.Context
 
         public DbSet<User> Users { get; set; }
 
-        public DomainContext(DbContextOptions options) : base(options)
+        public DomainContext()
         {
             Database.EnsureCreated();
         }
@@ -44,6 +44,7 @@ namespace CI.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ConfigureManyToMany();
+            modelBuilder.AddInitialData();
         }
     }
 }

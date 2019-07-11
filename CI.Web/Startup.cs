@@ -21,6 +21,7 @@ namespace CI.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDependency();
+            services.AddDbConnection();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
