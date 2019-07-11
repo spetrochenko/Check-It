@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CI.Common\CI.Common.csproj" />
+    <ProjectReference Include="..\CI.Data\CI.Data.csproj" />
+    <ProjectReference Include="..\CI.Models\CI.Models.csproj" />
+  </ItemGroup>
+
+</Project>

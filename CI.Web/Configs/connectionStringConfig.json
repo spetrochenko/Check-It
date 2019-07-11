@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings" : {
+    "DefaultConnection" : "Server=localhost;Database=Check_It_Dev;Trusted_Connection=True;" 
+  } 
+}
