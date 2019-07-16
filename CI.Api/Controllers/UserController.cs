@@ -14,7 +14,7 @@ namespace CI.Api.Controllers
         {
             this.userService = userService;
         }
-
+ 
         [HttpPost("CreateUser")]
         public IActionResult CreateUser(CreateUserViewModel createUserViewModel)
         {
