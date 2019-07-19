@@ -14,13 +14,13 @@ namespace CI.Api.Controllers
         {
             this.userService = userService;
         }
- 
+
         [HttpPost("CreateUser")]
-        public IActionResult CreateUser(CreateUserViewModel createUserViewModel)
+        public CreateUserViewModel CreateUser([FromBody]CreateUserViewModel createUserViewModel)
         {
             if (createUserViewModel == null)
             {
-                return BadRequest();
+                return null;
             }
 
             userService.CreateUser(new User
@@ -29,7 +29,7 @@ namespace CI.Api.Controllers
                 LastName = createUserViewModel.LastName
             });
 
-            return Ok(createUserViewModel);
+            return createUserViewModel;
         }
 
         [HttpGet("Test")]
