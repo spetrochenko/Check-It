@@ -15,18 +15,20 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export function App() {
+export const App = () => {
     const classes = useStyles();
 
     return (
         <div>
+            <Header />
             <Suspense fallback={
                 <div>
                     <CircularProgress className={classes.progress} />
                 </div>
             }>
-                <Header />
+                <Main />
             </Suspense>
+            <Footer />
         </div>
     )
 }

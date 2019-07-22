@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -55,36 +53,36 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export function Header() {
+export const Header = () => {
 
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
+    const [mobileMoreAnchorElement, setMobileMoreAnchorElement] = useState<null | HTMLElement>(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isMenuOpen = Boolean(anchorElement);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorElement);
 
     function handleProfileMenuOpen(event: React.MouseEvent<HTMLElement>) {
-        setAnchorEl(event.currentTarget);
+        setAnchorElement(event.currentTarget);
     }
 
     function handleMobileMenuClose() {
-        setMobileMoreAnchorEl(null);
+        setMobileMoreAnchorElement(null);
     }
 
     function handleMenuClose() {
-        setAnchorEl(null);
+        setAnchorElement(null);
         handleMobileMenuClose();
     }
 
     function handleMobileMenuOpen(event: React.MouseEvent<HTMLElement>) {
-        setMobileMoreAnchorEl(event.currentTarget);
+        setMobileMoreAnchorElement(event.currentTarget);
     }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
-            anchorEl={anchorEl}
+            anchorEl={anchorElement}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             id={menuId}
             keepMounted
@@ -98,7 +96,7 @@ export function Header() {
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
-            anchorEl={mobileMoreAnchorEl}
+            anchorEl={mobileMoreAnchorElement}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             id={mobileMenuId}
             keepMounted
