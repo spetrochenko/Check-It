@@ -5,3 +5,8 @@ export interface CreateUserViewModel {
     password: string,
     avatarUrl?: string
 }
+
+export interface BoardViewModel {
+    title: string,
+    columns: any[],
+}
