@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
   </ItemGroup>
 
@@ -12,6 +13,10 @@
     <ProjectReference Include="..\CI.Bussiness\CI.Bussiness.csproj" />
     <ProjectReference Include="..\CI.Common\CI.Common.csproj" />
     <ProjectReference Include="..\CI.Models\CI.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AutoMapper\UserMap\" />
   </ItemGroup>
 
 </Project>
