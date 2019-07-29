@@ -1,5 +1,5 @@
 
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Header from './Header';
