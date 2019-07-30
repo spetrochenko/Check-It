@@ -11,7 +11,8 @@ const useStyles = makeStyles({
         width: 300,
         marginTop: 30,
         padding: 8,
-        margin: 8
+        margin: 8,
+        height: '100%'
     }
 });
 

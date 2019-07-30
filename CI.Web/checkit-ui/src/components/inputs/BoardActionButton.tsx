@@ -4,11 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
-import TextArea from 'react-textarea-autosize';
 import { Button } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/styles';
-
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const useStyle = makeStyles({
     textAreaContainer: {
@@ -21,17 +20,45 @@ const useStyle = makeStyles({
         width: '100%',
         outline: 'none',
         border: 'none',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        fontSize: 14
     },
     button: {
-        color: 'white'
-    },
-    addButton: {
-        minWidth: 275,
-        width: '100%'
+        color: 'white',
+        textTransform: 'none'
     },
     cancelButton: {
-        marginLeft: 8
+        marginLeft: 8,
+        color: '212121',
+        cursor: 'pointer'
+    },
+    formButtonGroup: {
+        display: 'flex',
+        alignItems: 'center',
+        marginLeft: 10
+    },
+    addlistButton: {
+        minWidth: 275,
+        width: '100%',
+        color: 'white',
+        opacity: 1,
+        backgroundColor: '#50B050',
+        display: 'flex'
+    },
+    addTicketButton: {
+        minWidth: 275,
+        margin: 9,
+        width: '94%',
+        color: 'inherit',
+        opacity: 0.5,
+        backgroundColor: 'inherit',
+        display: 'flex'
+    },
+    textStyle: {
+        textTransform: 'none'
+    },
+    formMargin: {
+        marginTop: -10
     }
 });
 
@@ -47,13 +74,6 @@ const BoardActionButton = (props: any) => {
     const [isFormOpen, setFormOpen] = useState(false);
     const [text, setText] = useState();
 
-    const buttonOptions = {
-        buttonText: props.isList ? "Add another column" : "Add another ticket",
-        buttonTextOpasity: props.isList ? 1 : 0.5,
-        buttonTextColor: props.isList ? 'white' : 'inherit',
-        buttonTextBackground: props.isList ? 'rgba(0,0,0,.15)' : 'inherit',
-    }
-
     const formOptions = {
         placeholder: props.isList ? "Enter column title..." : "Enter ticket title...",
         buttonTitle: props.isList ? "Add column" : "Add ticket"
@@ -64,13 +84,12 @@ const BoardActionButton = (props: any) => {
     }
 
     const renderAddButton = () => {
-
         return (
-            <div style={{ opacity: buttonOptions.buttonTextOpasity, color: buttonOptions.buttonTextColor, backgroundColor: buttonOptions.buttonTextBackground }}>
-                <Button variant="contained" onClick={() => setFormOpen(true)} className={classes.addButton}>
+            <div>
+                <Button variant="contained" onClick={() => setFormOpen(true)} className={props.isList ? classes.addlistButton : classes.addTicketButton}>
                     <AddIcon />
-                    <Typography align="center" variant="overline" >
-                        {buttonOptions.buttonText}
+                    <Typography align="center" variant="subtitle1" className={classes.textStyle}>
+                        {props.isList ? "Add another column" : "Add another ticket"}
                     </Typography>
                 </Button>
             </div>
@@ -79,17 +98,18 @@ const BoardActionButton = (props: any) => {
 
     const renderForm = () => {
         return (
-            <div>
+            <div className={props.isList && classes.formMargin}>
                 <Card className={classes.textAreaContainer}>
-                    <TextArea
+                    <TextareaAutosize
                         placeholder={formOptions.placeholder}
                         autoFocus
                         onBlur={() => setFormOpen(false)}
                         value={text}
                         onChange={handleInputChange}
-                        className={classes.textArea} />
+                        className={classes.textArea}
+                        rows={4} />
                 </Card>
-                <div>
+                <div className={classes.formButtonGroup}>
                     <ThemeProvider theme={theme}>
                         <Button variant="contained" color="primary" className={classes.button}>
                             {formOptions.buttonTitle}

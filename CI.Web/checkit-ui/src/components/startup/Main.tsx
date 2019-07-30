@@ -12,6 +12,12 @@ const useStyles = makeStyles({
     listContainer: {
         display: 'flex',
         flexDirection: 'row'
+    },
+    buttonContainer: {
+        width: 300,
+        marginTop: 23,
+        padding: 7,
+        height: '100%'
     }
 });
 
@@ -27,6 +33,10 @@ export const Main = (props: any) => {
                 {
                     lists.map((list: any) => (<TicketList key={list.id} title={list.title} cards={list.cards} />))
                 }
+
+                <div className={classes.buttonContainer}>
+                    <BoardActionButton isList={true} />
+                </div>
             </div>
         </div>
     )
