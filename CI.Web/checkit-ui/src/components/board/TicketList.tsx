@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Ticket from '../board/Ticket';
 import BoardActionButton from '../inputs/BoardActionButton';
+import { Droppable } from 'react-beautiful-dnd';
 
 const useStyles = makeStyles({
     container: {
@@ -21,17 +22,26 @@ const TicketList = (props: any) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.container}>
-            <Typography variant="h6" component="h6">
-                {props.title}
-            </Typography>
-
+        <Droppable droppableId={String(props.listId)}>
             {
-                props.cards.map((card: any) => (<Ticket key={card.id} title={card.title} />))
-            }
+                provided => (
+                    <div {...provided.droppableProps} ref={provided.innerRef} className={classes.container}>
+                        <Typography variant="h6" component="h6">
+                            {props.title}
+                        </Typography>
 
-            <BoardActionButton isList={false} />
-        </div>
+                        {
+                            props.cards.map((card: any, index: any) => (<Ticket key={card.id} title={card.title} ticketId={card.id} index={index} />))
+                        }
+
+                        <BoardActionButton listId={props.listId} isList={false} />
+
+                        {provided.placeholder}
+                    </div>
+                )
+            }
+        </Droppable>
+
     )
 }
 

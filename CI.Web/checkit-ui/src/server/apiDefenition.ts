@@ -10,7 +10,7 @@ export class userApiController {
 
 export class boardApiController {
 
-    public createUser(boardViewModel: BoardViewModel): Promise<any> {
+    public createBoard(boardViewModel: BoardViewModel): Promise<any> {
         return fetch('api/BoardController/CreateBoard', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(boardViewModel) });
     }
 

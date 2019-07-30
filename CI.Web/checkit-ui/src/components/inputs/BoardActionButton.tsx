@@ -8,6 +8,8 @@ import { Button } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/styles';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { connect } from 'react-redux';
+import { AddList, AddTicket } from '../../actions/Actions';
 
 const useStyle = makeStyles({
     textAreaContainer: {
@@ -72,7 +74,7 @@ const BoardActionButton = (props: any) => {
 
     const classes = useStyle();
     const [isFormOpen, setFormOpen] = useState(false);
-    const [text, setText] = useState();
+    const [title, setTitle] = useState();
 
     const formOptions = {
         placeholder: props.isList ? "Enter column title..." : "Enter ticket title...",
@@ -80,7 +82,29 @@ const BoardActionButton = (props: any) => {
     }
 
     const handleInputChange = (event: any) => {
-        setText(event.target.value);
+        setTitle(event.target.value);
+    }
+
+    const handleAddList = () => {
+        const { dispatch } = props;
+
+        if (title) {
+            dispatch(AddList(title));
+            setTitle(null);
+        }
+
+        return;
+    }
+
+    const handleAddTicket = () => {
+        const { dispatch, listId } = props;
+
+        if (title) {
+            dispatch(AddTicket(listId, title));
+            setTitle(null);
+        }
+
+        return;
     }
 
     const renderAddButton = () => {
@@ -104,14 +128,18 @@ const BoardActionButton = (props: any) => {
                         placeholder={formOptions.placeholder}
                         autoFocus
                         onBlur={() => setFormOpen(false)}
-                        value={text}
+                        value={title}
                         onChange={handleInputChange}
                         className={classes.textArea}
                         rows={4} />
                 </Card>
                 <div className={classes.formButtonGroup}>
                     <ThemeProvider theme={theme}>
-                        <Button variant="contained" color="primary" className={classes.button}>
+                        <Button
+                            onMouseDown={props.isList ? handleAddList : handleAddTicket}
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}>
                             {formOptions.buttonTitle}
                         </Button>
                         <Icon className={classes.cancelButton}>
@@ -126,4 +154,4 @@ const BoardActionButton = (props: any) => {
     return isFormOpen ? renderForm() : renderAddButton();
 }
 
-export default BoardActionButton
+export default connect()(BoardActionButton);

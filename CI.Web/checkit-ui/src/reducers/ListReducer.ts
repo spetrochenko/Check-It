@@ -1,3 +1,8 @@
+import { CONSTANTS } from '../actions/Actions';
+
+let listId = 2;
+let ticketId = 3
+
 const initialState = [
     {
         title: "test1",
@@ -26,16 +31,45 @@ const initialState = [
                 title: "testCard2List2"
             },
             {
-                id: 3,
+                id: 2,
                 title: "testCard3List3"
             }
         ]
     }
 ]
 
-
 const ListReducer = (state = initialState, action: any) => {
     switch (action.type) {
+        case CONSTANTS.ADD_LIST:
+            const newList = {
+                title: action.payload,
+                cards: [],
+                id: listId
+            }
+            listId += 1;
+
+            return [...state, newList];
+
+        case CONSTANTS.ADD_TICKET:
+            const newTicket = {
+                title: action.payload.title,
+                id: ticketId
+            }
+            ticketId += 1;
+
+            const newState = state.map(list => {
+                if (list.id === action.payload.listId) {
+                    return {
+                        ...list,
+                        cards: [...list.cards, newTicket]
+                    }
+                } else {
+                    return list;
+                }
+            })
+
+            return newState;
+
         default:
             return state;
     }
