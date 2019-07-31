@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createMuiTheme } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
@@ -122,7 +122,7 @@ const BoardActionButton = (props: any) => {
 
     const renderForm = () => {
         return (
-            <div className={props.isList && classes.formMargin}>
+            <div className={props.isList ? classes.formMargin : undefined}>
                 <Card className={classes.textAreaContainer}>
                     <TextareaAutosize
                         placeholder={formOptions.placeholder}

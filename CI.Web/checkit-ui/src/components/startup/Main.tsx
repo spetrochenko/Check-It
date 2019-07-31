@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import BoardActionButton from '../inputs/BoardActionButton';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { Sort } from '../../actions/Actions';
 
 const mapStateToProps = (state: any) => ({
     lists: state.lists
@@ -27,8 +28,14 @@ export const Main = (props: any) => {
     const classes = useStyles();
     const { lists } = props;
 
-    const onDragEnd = () => {
+    const onDragEnd = (result: any) => {
+        const { destination, source, draggableId } = result;
 
+        if (!destination) {
+            return;
+        }
+
+        props.dispatch(Sort(source.droppableId, destination.droppableId, source.index, destination.index, draggableId));
     }
 
     return (
