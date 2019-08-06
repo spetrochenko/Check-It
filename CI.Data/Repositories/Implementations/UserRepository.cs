@@ -9,14 +9,9 @@ using System.Linq.Expressions;
 
 namespace CI.Data.Repositories.Implementations
 {
-    public class UserRepository :  IUserRepository
+    public class UserRepository : IUserRepository
     {
         private DomainContext domainContext;
-
-        public UserRepository(DomainContext domainContext)
-        {
-            this.domainContext = domainContext;
-        }
 
         public void Create(User entity)
         {

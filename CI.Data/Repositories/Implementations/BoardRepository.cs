@@ -42,7 +42,7 @@ namespace CI.Data.Repositories.Implementations
 
         public Board LoadById(int id)
         {
-            return domainContext.Boards.FirstOrDefault(b => b.Id == id);
+            return domainContext.Boards.FirstOrDefault(b => b.BoardId == id);
         }
 
         public IReadOnlyCollection<Board> Load()
