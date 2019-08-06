@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CI.Api.ViewModels;
+using CI.Api.ViewModels.Board;
 using CI.Bussiness.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

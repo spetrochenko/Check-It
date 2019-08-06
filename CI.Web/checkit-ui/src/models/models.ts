@@ -7,6 +7,7 @@ export interface CreateUserViewModel {
 }
 
 export interface BoardViewModel {
+  boardId: number;
   title: string;
   columns: ColumnViewModel[];
 }
@@ -21,4 +22,9 @@ export interface TicketViewModel {
   ticketId: string;
   title: string;
   creationDate: string;
+}
+
+export interface CreateColumnViewModel {
+  title: string;
+  boardId: number;
 }

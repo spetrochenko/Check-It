@@ -65,7 +65,7 @@ export const Main = (props: any) => {
           ))}
 
           <div className={classes.buttonContainer}>
-            <BoardActionButton isList={true} />
+            <BoardActionButton boardId={state.board.boardId} isList={true} />
           </div>
         </div>
       </div>

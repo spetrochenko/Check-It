@@ -5,14 +5,16 @@ import {
 } from "../../models/models";
 import {
   ADD_COLUMN,
-  ADD_TICKET,
   DRAG_HAPPENED
 } from "../../actions/board/BoardActionConstants";
+
+import { ADD_TICKET } from "../../actions/column/ColumnActionConstants";
 
 let columnId = 2;
 let ticketId = 5;
 
 const initialState: BoardViewModel = {
+  boardId: 1,
   title: "testBoard",
   columns: [
     {
@@ -103,16 +105,22 @@ export const BoardReducer = (state = initialState, action: any) => {
       const newState = state;
 
       if (droppableIdStart === droppableIdEnd) {
-        const column: any = state.columns.find(column => droppableIdStart == column.columnId);
+        const column: any = state.columns.find(
+          column => droppableIdStart == column.columnId
+        );
         const ticket = column.tickets.splice(droppableIndexStart, 1);
 
         column.tickets.splice(droppableIndexEnd, 0, ...ticket);
       }
 
       if (droppableIdStart !== droppableIdEnd) {
-        const columnStart: any = state.columns.find(column => droppableIdStart == column.columnId);
+        const columnStart: any = state.columns.find(
+          column => droppableIdStart == column.columnId
+        );
         const ticket = columnStart.tickets.splice(droppableIndexStart, 1);
-        const columnEnd: any = state.columns.find(column => droppableIdEnd == column.columnId);
+        const columnEnd: any = state.columns.find(
+          column => droppableIdEnd == column.columnId
+        );
 
         columnEnd.tickets.splice(droppableIndexEnd, 0, ...ticket);
       }

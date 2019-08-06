@@ -1,16 +1,17 @@
-import { ADD_COLUMN, ADD_TICKET, DRAG_HAPPENED } from "./BoardActionConstants";
+import { ADD_COLUMN, DRAG_HAPPENED } from "./BoardActionConstants";
+import { CreateColumnViewModel } from "../../models/models";
+import { columnApiController } from "../../server/apiDefenition";
 
-export const AddNewColumn = (title: string) => {
-  return {
-    type: ADD_COLUMN,
-    payload: title
-  };
-};
+export const AddNewColumn = (columnView: CreateColumnViewModel) => {
+  return (dispatch: any) => {
+    let columnController = new columnApiController();
 
-export const AddNewTicket = (columnId: number, title: string) => {
-  return {
-    type: ADD_TICKET,
-    payload: { columnId, title }
+    columnController.createColumn(columnView).then(response => {
+      dispatch({
+        type: ADD_COLUMN,
+        payload: response.title
+      });
+    });
   };
 };
 

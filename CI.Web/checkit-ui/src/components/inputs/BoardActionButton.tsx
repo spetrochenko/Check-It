@@ -9,7 +9,9 @@ import { green } from "@material-ui/core/colors";
 import { ThemeProvider } from "@material-ui/styles";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { connect } from "react-redux";
-import { AddNewColumn, AddNewTicket } from "../../actions/board/BoardActions";
+import { AddNewColumn } from "../../actions/board/BoardActions";
+import { AddNewTicket } from "../../actions/column/ColumnActions";
+import { CreateColumnViewModel } from "../../models/models";
 
 const useStyle = makeStyles({
   textAreaContainer: {
@@ -79,7 +81,7 @@ export const BoardActionButton = (props: any) => {
   const classes = useStyle();
   const [isFormOpen, setFormOpen] = useState(false);
   const [title, setTitle] = useState();
-  const { columnId, isList, AddNewColumn, AddNewTicket } = props;
+  const { boardId, columnId, isList, AddNewColumn, AddNewTicket } = props;
 
   const formOptions = {
     placeholder: props.isList
@@ -90,7 +92,11 @@ export const BoardActionButton = (props: any) => {
 
   const handleAddList = () => {
     if (title) {
-      AddNewColumn(String(title));
+      const column: CreateColumnViewModel = {
+        title: title,
+        boardId: boardId
+      };
+      AddNewColumn(column);
       setTitle(null);
     }
 

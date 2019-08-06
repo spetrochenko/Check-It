@@ -6,7 +6,7 @@ namespace CI.Models.Models
 {
     public class Board
     {
-        public int Id { get; set; }
+        public int BoardId { get; set; }
 
         public string Title { get; set; }
 
