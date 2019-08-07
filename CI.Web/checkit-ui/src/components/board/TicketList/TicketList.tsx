@@ -1,22 +1,10 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import Ticket from "../board/Ticket";
-import BoardActionButton from "../inputs/BoardActionButton";
+import Ticket from "../Ticket/Ticket";
+import BoardActionButton from "../../inputs/BoardActionButton";
 import { Droppable } from "react-beautiful-dnd";
-import { ColumnViewModel, TicketViewModel } from "../../models/models";
-
-const useStyles = makeStyles({
-  container: {
-    backgroundColor: "#9fa8da",
-    borderRadius: 5,
-    width: 300,
-    marginTop: 30,
-    padding: 8,
-    margin: 8,
-    height: "100%"
-  }
-});
+import { ColumnViewModel, TicketViewModel } from "../../../models/models";
+import { useStyles } from "./TicketListStyles";
 
 const TicketList = (props: ColumnViewModel) => {
   const classes = useStyles();

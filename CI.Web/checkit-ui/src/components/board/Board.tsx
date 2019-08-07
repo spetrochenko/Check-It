@@ -1,11 +1,11 @@
 import React from "react";
-import TicketList from "../board/TicketList";
-import { makeStyles } from "@material-ui/core";
-import { connect } from "react-redux";
 import BoardActionButton from "../inputs/BoardActionButton";
 import { DragDropContext } from "react-beautiful-dnd";
 import { BoardViewModel, ColumnViewModel } from "../../models/models";
 import { SortColumn } from "../../actions/board/BoardActions";
+import TicketList from "../board/TicketList/TicketList";
+import { useStyles } from "./BoardStyles";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state: BoardViewModel) => {
   return {
@@ -17,20 +17,7 @@ const mapDispatchToProps = {
   SortColumn
 };
 
-const useStyles = makeStyles({
-  listContainer: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  buttonContainer: {
-    width: 300,
-    marginTop: 23,
-    padding: 7,
-    height: "100%"
-  }
-});
-
-export const Main = (props: any) => {
+const Board = (props: any) => {
   const classes = useStyles();
 
   const { SortColumn, state } = props;
@@ -76,4 +63,4 @@ export const Main = (props: any) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Main);
+)(Board);

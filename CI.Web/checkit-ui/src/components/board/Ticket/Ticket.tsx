@@ -1,22 +1,9 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
-import { makeStyles, CardHeader } from "@material-ui/core";
+import { CardHeader } from "@material-ui/core";
 import { Draggable } from "react-beautiful-dnd";
-import { TicketViewModel } from "../../models/models";
-
-const useStyles = makeStyles({
-  card: {
-    minWidth: 275,
-    margin: 10,
-    transition: "0.2s",
-    "&:hover": {
-      backgroundColor: "#e0e0e0"
-    },
-    "&:active": {
-      backgroundColor: "#e0e0e0"
-    }
-  }
-});
+import { TicketViewModel } from "../../../models/models";
+import { useStyles } from "./TicketStyles";
 
 interface TicketProps {
   ticketModel: TicketViewModel;
