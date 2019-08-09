@@ -9,6 +9,10 @@ namespace CI.Api.AutoMapper.BoardMap
         public BoardProfile()
         {
             CreateMap<BoardViewModel, Board>();
+            CreateMap<Board, BoardViewModel>();
+
+            CreateMap<CreateBoardViewModel, Board>();
+            CreateMap<Board, CreateBoardViewModel>();
         }
     }
 }
