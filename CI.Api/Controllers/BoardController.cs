@@ -1,6 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using CI.Api.ViewModels.Board;
 using CI.Bussiness.Services.Interfaces;
+using CI.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CI.Api.Controllers
@@ -18,9 +21,19 @@ namespace CI.Api.Controllers
         }
 
         [HttpPost("CreateBoard")]
-        public void CreateBoard([FromBody]BoardViewModel boardViewModel)
+        public CreateBoardViewModel CreateBoard([FromBody]CreateBoardViewModel boardViewModel)
         {
+            var board = mapper.Map<Board>(boardViewModel);
 
+            boardService.CreateBoard(board);
+
+            return boardViewModel;
+        }
+
+        [HttpGet("LoadAllBoards")]
+        public IEnumerable<CreateBoardViewModel> LoadBoards()
+        {
+            return boardService.LoadAllBoards().Select(m => mapper.Map<CreateBoardViewModel>(m));
         }
 
         [HttpGet("LoadBoardById")]

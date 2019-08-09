@@ -8,21 +8,13 @@ export const useStyles = makeStyles((theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2)
     },
+    input: {
+      display: "none"
+    },
     title: {
       display: "none",
       [theme.breakpoints.up("sm")]: {
         display: "block"
-      }
-    },
-    inputRoot: {
-      color: "inherit"
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 7),
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: 200
       }
     },
     sectionDesktop: {
@@ -36,6 +28,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         display: "none"
       }
+    },
+    buttonText: {
+      color: "white"
     }
   })
 );

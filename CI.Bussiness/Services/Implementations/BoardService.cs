@@ -1,4 +1,5 @@
-﻿using CI.Bussiness.Services.Interfaces;
+﻿using System.Collections.Generic;
+using CI.Bussiness.Services.Interfaces;
 using CI.Data.Repositories.Interfaces;
 using CI.Models.Models;
 
@@ -21,6 +22,11 @@ namespace CI.Bussiness.Services.Implementations
         public Board LoadBoardById(int id)
         {
             return boardRepository.LoadById(id);
+        }
+
+        public IEnumerable<Board> LoadAllBoards()
+        {
+            return boardRepository.Load();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CI.Models.Models;
+﻿using System.Collections.Generic;
+using CI.Models.Models;
 
 namespace CI.Bussiness.Services.Interfaces
 {
@@ -7,5 +8,7 @@ namespace CI.Bussiness.Services.Interfaces
         void CreateBoard(Board board);
 
         Board LoadBoardById(int id);
+
+        IEnumerable<Board> LoadAllBoards();
     }
 }

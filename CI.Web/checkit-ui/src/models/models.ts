@@ -6,6 +6,10 @@ export interface CreateUserViewModel {
   avatarUrl?: string;
 }
 
+export interface CreateBoardViewModel {
+  title: string;
+}
+
 export interface BoardViewModel {
   boardId: number;
   title: string;

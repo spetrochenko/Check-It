@@ -66,11 +66,7 @@ export const BoardReducer = (state = initialState, action: any) => {
         tickets: []
       };
 
-      state.columns.splice(columnId, 0, newColumn);
-
-      columnId += 1;
-
-      return { ...state };
+      return { ...state, columns: [...state.columns, newColumn] };
 
     case ADD_TICKET: {
       const newTicket: TicketViewModel = {

@@ -1,6 +1,6 @@
 import {
   CreateUserViewModel,
-  BoardViewModel,
+  CreateBoardViewModel,
   CreateColumnViewModel
 } from "../models/models";
 
@@ -15,16 +15,23 @@ export class userApiController {
 }
 
 export class boardApiController {
-  public createBoard(boardViewModel: BoardViewModel): Promise<any> {
-    return fetch("api/BoardController/CreateBoard", {
+  public async createBoard(boardViewModel: CreateBoardViewModel): Promise<any> {
+    const response = await fetch("api/BoardController/CreateBoard", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(boardViewModel)
     });
+
+    return await response.json();
   }
 
-  public loadById(id: number): Promise<any> {
-    return fetch("api/BoardController/LoadBoardById", { method: "GET" });
+  public async loadBoards(): Promise<any> {
+    const response = await fetch("api/BoardController/LoadAllBoards", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    return await response.json();
   }
 }
 
