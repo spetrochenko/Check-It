@@ -1,9 +1,9 @@
 import React from "react";
-import BoardActionButton from "../inputs/BoardActionButton";
+import BoardActionButton from "../../inputs/BoardActionButton";
 import { DragDropContext } from "react-beautiful-dnd";
-import { BoardViewModel, ColumnViewModel } from "../../models/models";
-import { SortColumn } from "../../actions/board/BoardActions";
-import TicketList from "../board/TicketList/TicketList";
+import { BoardViewModel, ColumnViewModel } from "../../../models/models";
+import { SortColumn } from "../../../actions/board/BoardActions";
+import TicketList from "../TicketList/TicketList";
 import { useStyles } from "./BoardStyles";
 import { connect } from "react-redux";
 
