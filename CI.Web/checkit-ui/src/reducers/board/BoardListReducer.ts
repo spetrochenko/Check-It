@@ -4,7 +4,11 @@ import {
   ADD_BOARD
 } from "../../actions/board/BoardActionConstants";
 
-const initialState: CreateBoardViewModel[] = [];
+const initialState: CreateBoardViewModel[] = [
+  {
+    title: "testBoard1"
+  }
+];
 
 export const BoardListReducer = (state = initialState, action: any) => {
   switch (action.type) {

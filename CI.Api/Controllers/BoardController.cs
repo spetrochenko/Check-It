@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CI.Api.ViewModels.Board;
 using CI.Bussiness.Services.Interfaces;
 using CI.Models.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CI.Api.Controllers
 {
