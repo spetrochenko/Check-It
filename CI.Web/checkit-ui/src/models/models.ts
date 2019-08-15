@@ -6,6 +6,11 @@ export interface CreateUserViewModel {
   avatarUrl?: string;
 }
 
+export interface BoardListModel {
+  boardList: CreateBoardViewModel[];
+  isFetching: boolean;
+}
+
 export interface CreateBoardViewModel {
   title: string;
 }
