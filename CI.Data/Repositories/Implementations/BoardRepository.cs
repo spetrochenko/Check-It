@@ -47,9 +47,12 @@ namespace CI.Data.Repositories.Implementations
 
         public IReadOnlyCollection<Board> Load()
         {
-            domainContext.Boards.Load();
+            using (domainContext = new DomainContext())
+            {
+                domainContext.Boards.Load();
 
-            return domainContext.Boards.ToList();
+                return domainContext.Boards.ToList();
+            }
         }
 
         public IReadOnlyCollection<Board> LoadBy(Expression<Func<Board, bool>> expression)

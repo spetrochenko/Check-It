@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CreateBoardViewModel } from "../../../models/models";
 import { useStyles } from "./BoardListStyles";
@@ -7,15 +7,26 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { ListSubheader } from "@material-ui/core";
+import { LoadBoards } from "../../../actions/board/BoardActions";
+import Preloader from "../../preloader/Preloader";
 
-const mapStateToProps = (state: CreateBoardViewModel[]) => {
+const mapStateToProps = (state: any) => {
   return {
-    state: state
+    state: state.boardList
   };
+};
+
+const mapDispatchToProps = {
+  LoadBoards
 };
 
 const BoardList = (props: any) => {
   const classes = useStyles();
+  const { state, LoadBoards } = props;
+
+  useEffect(() => {
+    LoadBoards();
+  }, []);
 
   const RenderTextNoBoards = () => (
     <Typography
@@ -28,8 +39,8 @@ const BoardList = (props: any) => {
   );
 
   const RenderBoards = () => {
-    if (props.state.boardList.length > 0) {
-      return props.state.boardList.map((item: CreateBoardViewModel) => (
+    if (state.boardList.length > 0) {
+      return state.boardList.map((item: CreateBoardViewModel) => (
         <Card className={classes.cardStyle} key={item.title}>
           <CardActionArea>
             <CardContent>
@@ -50,9 +61,14 @@ const BoardList = (props: any) => {
       <ListSubheader component="div" id="nested-list-subheader">
         My boards
       </ListSubheader>
-      <div className={classes.cardContainer}>{RenderBoards()}</div>
+      <div className={classes.cardContainer}>
+        {state.isFetching ? <Preloader /> : RenderBoards()}
+      </div>
     </div>
   );
 };
 
-export default connect(mapStateToProps)(BoardList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BoardList);
