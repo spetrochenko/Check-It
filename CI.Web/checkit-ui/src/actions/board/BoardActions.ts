@@ -2,7 +2,8 @@ import {
   ADD_COLUMN,
   DRAG_HAPPENED,
   ADD_BOARD,
-  LOAD_BOARDS
+  LOAD_BOARDS,
+  LOAD_BOARDS_REQUEST
 } from "./BoardActionConstants";
 import {
   CreateColumnViewModel,
@@ -15,9 +16,7 @@ import {
 
 export const AddNewColumn = (columnView: CreateColumnViewModel) => {
   return (dispatch: any) => {
-    let columnController = new columnApiController();
-
-    columnController.createColumn(columnView).then(response => {
+    columnApiController.createColumn(columnView).then(response => {
       dispatch({
         type: ADD_COLUMN,
         payload: response.title
@@ -28,9 +27,7 @@ export const AddNewColumn = (columnView: CreateColumnViewModel) => {
 
 export const AddNewBoard = (boardView: CreateBoardViewModel) => {
   return (dispatch: any) => {
-    let boardController = new boardApiController();
-
-    boardController.createBoard(boardView).then(response => {
+    boardApiController.createBoard(boardView).then(response => {
       dispatch({
         type: ADD_BOARD,
         payload: response
@@ -41,14 +38,18 @@ export const AddNewBoard = (boardView: CreateBoardViewModel) => {
 
 export const LoadBoards = () => {
   return (dispatch: any) => {
-    let boardController = new boardApiController();
-
-    boardController.loadBoards().then(response => {
-      dispatch({
-        type: LOAD_BOARDS,
-        payload: response
-      });
+    dispatch({
+      type: LOAD_BOARDS_REQUEST
     });
+
+    setTimeout(() => {
+      boardApiController.loadBoards().then(response => {
+        dispatch({
+          type: LOAD_BOARDS,
+          payload: response
+        });
+      });
+    }, 2000);
   };
 };
 
