@@ -15,7 +15,9 @@ export class userApiController {
 }
 
 export class boardApiController {
-  public async createBoard(boardViewModel: CreateBoardViewModel): Promise<any> {
+  public static async createBoard(
+    boardViewModel: CreateBoardViewModel
+  ): Promise<any> {
     const response = await fetch("api/BoardController/CreateBoard", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,7 +27,7 @@ export class boardApiController {
     return await response.json();
   }
 
-  public async loadBoards(): Promise<any> {
+  public static async loadBoards(): Promise<any> {
     const response = await fetch("api/BoardController/LoadAllBoards", {
       method: "GET",
       headers: { "Content-Type": "application/json" }
@@ -36,7 +38,9 @@ export class boardApiController {
 }
 
 export class columnApiController {
-  public async createColumn(columnView: CreateColumnViewModel): Promise<any> {
+  public static async createColumn(
+    columnView: CreateColumnViewModel
+  ): Promise<any> {
     const response = await fetch("api/ColumnController/CreateColumn", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
