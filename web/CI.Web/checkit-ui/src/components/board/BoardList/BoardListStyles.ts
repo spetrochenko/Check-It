@@ -12,8 +12,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: 150,
       marginRight: "1%",
       marginTop: "2%",
-      maxHeight: 120,
-      textDecoration: "none"
+      maxHeight: 120
     },
     cardContainer: {
       display: "flex",
