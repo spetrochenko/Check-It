@@ -25,7 +25,12 @@ namespace CI.Api.Controllers
         {
             var board = mapper.Map<Board>(boardViewModel);
 
-            boardService.CreateBoard(board);
+            var isAdded = boardService.CreateBoard(board);
+
+            if (!isAdded)
+            {
+                //TODO implement throw global exception
+            }
 
             return boardViewModel;
         }
@@ -34,6 +39,19 @@ namespace CI.Api.Controllers
         public IEnumerable<CreateBoardViewModel> LoadBoards()
         {
             return boardService.LoadAllBoards().Select(m => mapper.Map<CreateBoardViewModel>(m));
+        }
+
+        [HttpDelete("DeleteBoard")]
+        public void DeleteBoard([FromBody]CreateBoardViewModel boardViewModel)
+        {
+            var board = mapper.Map<Board>(boardViewModel);
+
+            var isDeleted = boardService.DeleteBoard(board);
+
+            if (!isDeleted)
+            {
+                //TODO implement throw global exception
+            }
         }
 
         [HttpGet("LoadBoardById")]

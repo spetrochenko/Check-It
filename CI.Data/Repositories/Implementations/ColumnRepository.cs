@@ -12,13 +12,15 @@ namespace CI.Data.Repositories.Implementations
     {
         private DomainContext domainContext;
 
-        public void Create(Column entity)
+        public bool Create(Column entity)
         {
             using (domainContext = new DomainContext())
             {
                 domainContext.Entry(entity).State = EntityState.Added;
                 domainContext.SaveChanges();
             }
+
+            return true;
         }
 
         public void Update(Column entity)
@@ -26,7 +28,7 @@ namespace CI.Data.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public void Delete(Column entity)
+        public bool Delete(Column entity)
         {
             throw new NotImplementedException();
         }

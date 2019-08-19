@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CI.Bussiness.Services.Interfaces;
 using CI.Data.Repositories.Interfaces;
 using CI.Models.Models;
+using ExecuteHelper = CI.Bussiness.ExecutableHelper.ExecutableHelper;
 
 namespace CI.Bussiness.Services.Implementations
 {
@@ -14,9 +16,26 @@ namespace CI.Bussiness.Services.Implementations
             this.boardRepository = boardRepository;
         }
 
-        public void CreateBoard(Board board)
+        public bool CreateBoard(Board board)
         {
-            boardRepository.Create(board);
+            if (board == null)
+            {
+                return false;
+            }
+
+            board.CreatedTime = DateTime.Now;
+
+            return ExecuteHelper.ExecuteCreateMethod(boardRepository, board);
+        }
+
+        public bool DeleteBoard(Board board)
+        {
+            if (board == null)
+            {
+                return false;
+            }
+
+            return ExecuteHelper.ExecuteDeleteMethod(boardRepository, board);
         }
 
         public Board LoadBoardById(int id)

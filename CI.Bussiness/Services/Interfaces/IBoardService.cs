@@ -5,7 +5,9 @@ namespace CI.Bussiness.Services.Interfaces
 {
     public interface IBoardService
     {
-        void CreateBoard(Board board);
+        bool CreateBoard(Board board);
+
+        bool DeleteBoard(Board board);
 
         Board LoadBoardById(int id);
 

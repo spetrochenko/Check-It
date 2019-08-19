@@ -6,11 +6,11 @@ namespace CI.Data.Repositories.Interfaces
 {
     public interface ICommonRepository<TEntity> where TEntity : class
     {
-        void Create(TEntity entity);
+        bool Create(TEntity entity);
 
         void Update(TEntity entity);
 
-        void Delete(TEntity entity);
+        bool Delete(TEntity entity);
 
         TEntity LoadById(int id);
 

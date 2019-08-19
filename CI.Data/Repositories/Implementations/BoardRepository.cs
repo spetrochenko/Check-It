@@ -4,6 +4,7 @@ using CI.Models.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -13,12 +14,22 @@ namespace CI.Data.Repositories.Implementations
     {
         private DomainContext domainContext;
 
-        public void Create(Board entity)
+        public bool Create(Board entity)
         {
-            using (domainContext = new DomainContext())
+            try
             {
-                domainContext.Entry(entity).State = EntityState.Added;
-                domainContext.SaveChanges();
+                using (domainContext = new DomainContext())
+                {
+                    domainContext.Entry(entity).State = EntityState.Added;
+                    domainContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (SqlException)
+            {
+                //TODO Logger implementation
+                return false;
             }
         }
 
@@ -31,12 +42,22 @@ namespace CI.Data.Repositories.Implementations
             }
         }
 
-        public void Delete(Board entity)
+        public bool Delete(Board entity)
         {
-            using (domainContext = new DomainContext())
+            try
             {
-                domainContext.Entry(entity).State = EntityState.Deleted;
-                domainContext.SaveChanges();
+                using (domainContext = new DomainContext())
+                {
+                    domainContext.Entry(entity).State = EntityState.Deleted;
+                    domainContext.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (SqlException)
+            {
+                //TODO Logger implementation
+                return false;
             }
         }
 
@@ -50,6 +71,8 @@ namespace CI.Data.Repositories.Implementations
             using (domainContext = new DomainContext())
             {
                 domainContext.Boards.Load();
+
+                var test = domainContext.Boards.ToList();
 
                 return domainContext.Boards.ToList();
             }
