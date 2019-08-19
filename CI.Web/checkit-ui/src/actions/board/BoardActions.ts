@@ -3,7 +3,8 @@ import {
   DRAG_HAPPENED,
   ADD_BOARD,
   LOAD_BOARDS,
-  LOAD_BOARDS_REQUEST
+  LOAD_BOARDS_REQUEST,
+  DELETE_BOARD
 } from "./BoardActionConstants";
 import {
   CreateColumnViewModel,
@@ -27,12 +28,22 @@ export const AddNewColumn = (columnView: CreateColumnViewModel) => {
 
 export const AddNewBoard = (boardView: CreateBoardViewModel) => {
   return (dispatch: any) => {
-    boardApiController.createBoard(boardView).then(response => {
-      dispatch({
-        type: ADD_BOARD,
-        payload: response
+    boardApiController
+      .createBoard(boardView)
+      .then(response => {
+        dispatch({
+          type: ADD_BOARD,
+          payload: response
+        });
+      })
+      .then(() => {
+        boardApiController.loadBoards().then(response => {
+          dispatch({
+            type: LOAD_BOARDS,
+            payload: response
+          });
+        });
       });
-    });
   };
 };
 
@@ -42,14 +53,12 @@ export const LoadBoards = () => {
       type: LOAD_BOARDS_REQUEST
     });
 
-    setTimeout(() => {
-      boardApiController.loadBoards().then(response => {
-        dispatch({
-          type: LOAD_BOARDS,
-          payload: response
-        });
+    boardApiController.loadBoards().then(response => {
+      dispatch({
+        type: LOAD_BOARDS,
+        payload: response
       });
-    }, 2000);
+    });
   };
 };
 
@@ -69,5 +78,25 @@ export const SortColumn = (
       droppableIndexEnd,
       draggableId
     }
+  };
+};
+
+export const DeleteBoard = (boardView: CreateBoardViewModel) => {
+  return (dispatch: any) => {
+    boardApiController
+      .deleteBoard(boardView)
+      .then(() => {
+        dispatch({
+          type: DELETE_BOARD
+        });
+      })
+      .then(() => {
+        boardApiController.loadBoards().then(response => {
+          dispatch({
+            type: LOAD_BOARDS,
+            payload: response
+          });
+        });
+      });
   };
 };

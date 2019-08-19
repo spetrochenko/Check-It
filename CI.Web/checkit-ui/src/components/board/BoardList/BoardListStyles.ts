@@ -9,10 +9,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       maxWidth: "40%"
     },
     cardStyle: {
-      maxWidth: 320,
+      width: 150,
       marginRight: "1%",
       marginTop: "2%",
-      maxHeight: 70
+      maxHeight: 120
     },
     cardContainer: {
       display: "flex",

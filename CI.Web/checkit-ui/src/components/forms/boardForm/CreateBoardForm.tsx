@@ -23,7 +23,7 @@ const CreateBoardForm = (props: any) => {
   }, [isOpen]);
 
   const handleClose = () => {
-    setDialogOpen(false);
+    setDialogOpen(!isOpen);
   };
 
   const handleCreate = () => {
@@ -35,7 +35,7 @@ const CreateBoardForm = (props: any) => {
       AddNewBoard(board);
     }
 
-    setDialogOpen(false);
+    setDialogOpen(!isOpen);
   };
 
   return (

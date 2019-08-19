@@ -35,6 +35,18 @@ export class boardApiController {
 
     return await response.json();
   }
+
+  public static async deleteBoard(
+    boardViewModel: CreateBoardViewModel
+  ): Promise<any> {
+    const response = await fetch("api/BoardController/DeleteBoard", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(boardViewModel)
+    });
+
+    return await response.json();
+  }
 }
 
 export class columnApiController {

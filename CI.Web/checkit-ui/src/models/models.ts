@@ -12,6 +12,7 @@ export interface BoardListModel {
 }
 
 export interface CreateBoardViewModel {
+  boardId?: number;
   title: string;
 }
 

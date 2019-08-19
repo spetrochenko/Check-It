@@ -1,7 +1,8 @@
 import { BoardListModel } from "../../models/models";
 import {
   LOAD_BOARDS,
-  LOAD_BOARDS_REQUEST
+  LOAD_BOARDS_REQUEST,
+  DELETE_BOARD
 } from "../../actions/board/BoardActionConstants";
 
 const initialState: BoardListModel = {
@@ -15,6 +16,8 @@ export const BoardListReducer = (state = initialState, action: any) => {
       return { ...state, isFetching: true };
     case LOAD_BOARDS:
       return { ...state, boardList: action.payload, isFetching: false };
+    case DELETE_BOARD:
+      return { ...state };
     default:
       return state;
   }
