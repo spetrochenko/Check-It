@@ -9,20 +9,22 @@ using System.Linq.Expressions;
 
 namespace CI.Data.Repositories.Implementations
 {
-    public class BoardRepository : IBoardRepository
+    public class UserRepository : IUserRepository
     {
         private DomainContext domainContext;
 
-        public void Create(Board entity)
+        public bool Create(User entity)
         {
             using (domainContext = new DomainContext())
             {
                 domainContext.Entry(entity).State = EntityState.Added;
                 domainContext.SaveChanges();
             }
+
+            return true;
         }
 
-        public void Update(Board entity)
+        public void Update(User entity)
         {
             using (domainContext = new DomainContext())
             {
@@ -31,37 +33,35 @@ namespace CI.Data.Repositories.Implementations
             }
         }
 
-        public void Delete(Board entity)
+        public bool Delete(User entity)
         {
             using (domainContext = new DomainContext())
             {
                 domainContext.Entry(entity).State = EntityState.Deleted;
                 domainContext.SaveChanges();
             }
+
+            return true;
         }
 
-        public Board LoadById(int id)
+        public User LoadById(int id)
         {
-            return domainContext.Boards.FirstOrDefault(b => b.BoardId == id);
+            return domainContext.Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public IReadOnlyCollection<Board> Load()
+        public IReadOnlyCollection<User> Load()
         {
-            using (domainContext = new DomainContext())
-            {
-                domainContext.Boards.Load();
+            domainContext.Users.Load();
 
-                return domainContext.Boards.ToList();
-            }
+            return domainContext.Users.ToList();
         }
 
-        public IReadOnlyCollection<Board> LoadBy(Expression<Func<Board, bool>> expression)
+        public IReadOnlyCollection<User> LoadBy(Expression<Func<User, bool>> expression)
         {
-            domainContext.Boards
-                         .Where(expression)
-                         .Load();
+            domainContext.Users.Where(expression)
+                               .Load();
 
-            return domainContext.Boards.ToList();
+            return domainContext.Users.ToList();
         }
     }
 }
