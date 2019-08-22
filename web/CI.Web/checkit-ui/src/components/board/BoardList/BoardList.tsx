@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { CreateBoardViewModel } from "../../../models/models";
 import { useStyles } from "./BoardListStyles";
@@ -7,27 +7,16 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { ListSubheader } from "@material-ui/core";
-import { LoadBoards } from "../../../actions/board/BoardActions";
-import Preloader from "../../preloader/Preloader";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: CreateBoardViewModel[]) => {
   return {
-    state: state.boardList
+    state: state,
   };
-};
-
-const mapDispatchToProps = {
-  LoadBoards
 };
 
 const BoardList = (props: any) => {
   const classes = useStyles();
-  const { state, LoadBoards } = props;
-
-  useEffect(() => {
-    LoadBoards();
-  }, []);
 
   const RenderTextNoBoards = () => (
     <Typography
@@ -39,24 +28,31 @@ const BoardList = (props: any) => {
     </Typography>
   );
 
+  const getPath = (title: String) => {
+    return "/board/" + title.toLowerCase().replace(' ', '_');
+  };
+
   const RenderBoards = () => {
-    if (state.boardList.length > 0) {
-      return state.boardList.map((item: CreateBoardViewModel) => (
-        <Link
-          to={`/board/${item.boardId}`}
-          className={classes.cardStyle}
-          key={item.boardId}
-        >
-          <Card>
-            <CardActionArea>
-              <CardContent>
+    if (props.state.boardList.length > 0) {
+      return props.state.boardList.map((item: CreateBoardViewModel) => (
+        <Card className={classes.cardStyle} key={item.title}>
+          <CardActionArea>
+            <CardContent>
+              <NavLink
+                to={getPath(item.title)}
+                exact
+                style={{
+                  textDecoration: "none",
+                  color: "#000",
+                }}
+              >
                 <Typography gutterBottom variant="h5" component="h2">
                   {item.title}
                 </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Link>
+              </NavLink>
+            </CardContent>
+          </CardActionArea>
+        </Card>
       ));
     }
 
@@ -68,14 +64,9 @@ const BoardList = (props: any) => {
       <ListSubheader component="div" id="nested-list-subheader">
         My boards
       </ListSubheader>
-      <div className={classes.cardContainer}>
-        {state.isFetching ? <Preloader /> : RenderBoards()}
-      </div>
+      <div className={classes.cardContainer}>{RenderBoards()}</div>
     </div>
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoardList);
+export default connect(mapStateToProps)(BoardList);

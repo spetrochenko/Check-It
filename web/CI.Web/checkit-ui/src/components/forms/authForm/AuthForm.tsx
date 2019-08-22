@@ -5,14 +5,10 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import FaceIcon from "@material-ui/icons/Face";
-import LockIcon from "@material-ui/icons/Lock";
-import { useStyles } from "./AuthFormStyles";
 
 const AuthForm = (props: any) => {
   const [open, setOpen] = useState(false);
   const { isOpen, setDialogOpen, isSignIn } = props;
-  const classes = useStyles();
 
   useEffect(() => {
     setOpen(isOpen);
@@ -30,12 +26,7 @@ const AuthForm = (props: any) => {
         aria-labelledby="form-dialog-title"
         maxWidth="xs"
       >
-        <DialogTitle
-          id="form-dialog-title"
-          className={classes.signInFormsTitle}
-        >
-          <FaceIcon />
-        </DialogTitle>
+        <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -73,12 +64,7 @@ const AuthForm = (props: any) => {
         aria-labelledby="form-dialog-title"
         maxWidth="xs"
       >
-        <DialogTitle
-          id="form-dialog-title"
-          className={classes.signInFormsTitle}
-        >
-          <LockIcon />
-        </DialogTitle>
+        <DialogTitle id="form-dialog-title">Sign up</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
