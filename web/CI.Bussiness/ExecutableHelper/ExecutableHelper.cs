@@ -6,28 +6,20 @@ namespace CI.Bussiness.ExecutableHelper
 {
     internal static class ExecutableHelper
     {
-        public static bool ExecuteCreateMethod<T>(ICommonRepository<T> repository, T entity) where T : class
+        public static bool ExecuteCreateMethod<T>(IGenericRepository<T> repository, T entity) where T : class, new()
         {
-            Expression<Func<ICommonRepository<T>, bool>> isExecuteExpression = repo => repo.Create(entity);
+            Expression<Func<IGenericRepository<T>, bool>> isExecuteExpression = repo => repo.Create(entity);
 
             return isExecuteExpression.Compile()
                                       .Invoke(repository);
         }
 
-        public static bool ExecuteDeleteMethod<T>(ICommonRepository<T> repository, T entity) where T : class
+        public static bool ExecuteDeleteMethod<T>(IGenericRepository<T> repository, T entity) where T : class, new()
         {
-            Expression<Func<ICommonRepository<T>, bool>> isExecuteExpression = repo => repo.Delete(entity);
+            Expression<Func<IGenericRepository<T>, bool>> isExecuteExpression = repo => repo.Delete(entity);
 
             return isExecuteExpression.Compile()
                                       .Invoke(repository);
         }
-
-        //public static bool ExecuteUpdateMethod<T>(ICommonRepository<T> repository, T entity) where T : class
-        //{
-        //    Expression<Func<ICommonRepository<T>, bool>> isExecuteExpression = repo => repo.Update(entity);
-
-        //    return isExecuteExpression.Compile()
-        //        .Invoke(repository);
-        //}
     }
 }
