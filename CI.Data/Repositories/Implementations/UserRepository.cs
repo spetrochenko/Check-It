@@ -9,22 +9,19 @@ using System.Linq.Expressions;
 
 namespace CI.Data.Repositories.Implementations
 {
-    public class UserRepository :  IUserRepository
+    public class UserRepository : IUserRepository
     {
         private DomainContext domainContext;
 
-        public UserRepository(DomainContext domainContext)
-        {
-            this.domainContext = domainContext;
-        }
-
-        public void Create(User entity)
+        public bool Create(User entity)
         {
             using (domainContext = new DomainContext())
             {
                 domainContext.Entry(entity).State = EntityState.Added;
                 domainContext.SaveChanges();
             }
+
+            return true;
         }
 
         public void Update(User entity)
@@ -36,13 +33,15 @@ namespace CI.Data.Repositories.Implementations
             }
         }
 
-        public void Delete(User entity)
+        public bool Delete(User entity)
         {
             using (domainContext = new DomainContext())
             {
                 domainContext.Entry(entity).State = EntityState.Deleted;
                 domainContext.SaveChanges();
             }
+
+            return true;
         }
 
         public User LoadById(int id)

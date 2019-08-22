@@ -1,4 +1,7 @@
-﻿using CI.DependencyInjection.DependencyInjector;
+﻿using System;
+using AutoMapper;
+using CI.Api.AutoMapper;
+using CI.DependencyInjection.DependencyInjector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +22,8 @@ namespace CI.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(MapperFactory.GetMapper());
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDependency();

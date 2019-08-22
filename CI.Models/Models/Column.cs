@@ -10,6 +10,10 @@ namespace CI.Models.Models
 
         public int TaskCount { get; set; }
 
+        public int BoardId { get; set; }
+
+        public Board Board { get; set; }
+
         public ICollection<Task> Tasks { get; set; }
     }
 }
