@@ -24,7 +24,7 @@ namespace CI.Data.Repositories.Implementations
             {
                 using (domainContext)
                 {
-                    domainContext.Entry(entity).State = EntityState.Added;
+                    domainContext.Attach(entity).State = EntityState.Added;
                     domainContext.SaveChanges();
                 }
 
@@ -94,7 +94,9 @@ namespace CI.Data.Repositories.Implementations
         {
             using (domainContext)
             {
-                domainContext.Set<TEntity>().Load();
+                domainContext.Set<TEntity>()
+                             .AsNoTracking()
+                             .Load();
 
                 return domainContext.Set<TEntity>().ToList();
             }
@@ -105,6 +107,7 @@ namespace CI.Data.Repositories.Implementations
             using (domainContext)
             {
                 domainContext.Set<TEntity>()
+                    .AsNoTracking()
                     .Where(expression)
                     .Load();
 
@@ -117,6 +120,7 @@ namespace CI.Data.Repositories.Implementations
             using (domainContext)
             {
                 domainContext.Set<TEntity>()
+                    .AsNoTracking()
                     .OrderBy(expression)
                     .Load();
 
