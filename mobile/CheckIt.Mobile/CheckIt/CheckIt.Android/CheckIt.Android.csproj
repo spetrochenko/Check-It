@@ -92,6 +92,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CheckIt.Common\CheckIt.Common.csproj">
+      <Project>{b5cba483-bf47-4912-b723-e73d3ab62ec3}</Project>
+      <Name>CheckIt.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CheckIt\CheckIt.Core.csproj">
       <Project>{A1866D2D-BD0B-4BE6-B474-C8979504051F}</Project>
       <Name>CheckIt.Core</Name>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckIt.Common.Container;
+using CheckIt.DependencyComposition.ContainerConfiguration;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,9 @@ namespace CheckIt.Core
         public App()
         {
             InitializeComponent();
+
+            var container = new BootstrapContainer();
+            AppContainer.Container = container.CreateContainer();
 
             MainPage = new MainPage();
         }
