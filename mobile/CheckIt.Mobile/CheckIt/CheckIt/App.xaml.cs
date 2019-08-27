@@ -1,10 +1,12 @@
 ﻿using CheckIt.Common.Container;
+using CheckIt.Core.Components.Main;
+using CheckIt.Core.ViewModelsModule;
 using CheckIt.DependencyComposition.ContainerConfiguration;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace CheckIt.Core
+namespace CheckIt.Source.Core
 {
     public partial class App : Application
     {
@@ -13,7 +15,7 @@ namespace CheckIt.Core
             InitializeComponent();
 
             var container = new BootstrapContainer();
-            AppContainer.Container = container.CreateContainer();
+            AppContainer.Container = container.CreateContainer(new ViewModelsModule());
 
             MainPage = new MainPage();
         }

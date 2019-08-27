@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CheckIt.Data\CheckIt.Data.csproj" />
-    <ProjectReference Include="..\CheckIt\CheckIt\CheckIt.Core.csproj" />
   </ItemGroup>
 
 </Project>

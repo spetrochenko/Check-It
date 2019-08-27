@@ -6,7 +6,7 @@ namespace CheckIt.DependencyComposition.ContainerConfiguration
     {
         public static void Registry(ContainerBuilder container)
         {
-            
+
         }
     }
 }

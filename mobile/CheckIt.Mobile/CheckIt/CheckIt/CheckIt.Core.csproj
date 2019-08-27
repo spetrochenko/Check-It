@@ -10,11 +10,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\CheckIt.Common\CheckIt.Common.csproj" />
+    <ProjectReference Include="..\..\CheckIt.Data\CheckIt.Data.csproj" />
+    <ProjectReference Include="..\..\CheckIt.DependencyComposition\CheckIt.DependencyComposition.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Components\Main\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckIt.Android", "CheckIt\CheckIt.Android\CheckIt.Android.csproj", "{F7AA50A1-A9FC-43C3-878F-7500C018407A}"
 EndProject
@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS", "iOS", "{C4895B71-EDE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{C8B6162F-B503-4971-8F12-1621031E3FEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckIt.Data", "CheckIt.Data\CheckIt.Data.csproj", "{28461523-D573-4856-9737-74552F1DB562}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckIt.Data", "CheckIt.Data\CheckIt.Data.csproj", "{28461523-D573-4856-9737-74552F1DB562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckIt.DependencyComposition", "CheckIt.DependencyComposition\CheckIt.DependencyComposition.csproj", "{114B2A10-A6C0-4458-BB30-43EAF9FE719E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckIt.DependencyComposition", "CheckIt.DependencyComposition\CheckIt.DependencyComposition.csproj", "{114B2A10-A6C0-4458-BB30-43EAF9FE719E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckIt.Common", "CheckIt.Common\CheckIt.Common.csproj", "{B5CBA483-BF47-4912-B723-E73D3AB62EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckIt.Common", "CheckIt.Common\CheckIt.Common.csproj", "{B5CBA483-BF47-4912-B723-E73D3AB62EC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

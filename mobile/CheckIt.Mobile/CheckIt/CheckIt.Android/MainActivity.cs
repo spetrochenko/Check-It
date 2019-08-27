@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using CheckIt.Core;
+using CheckIt.Source.Core;
 
 namespace CheckIt.Droid
 {

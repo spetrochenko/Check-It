@@ -7,6 +7,6 @@ namespace CheckIt.Common.Container
     {
         public static IContainer Container { get; set; }
 
-        public static T GetDependency<T>() => Container.Resolve<T>();
+        public static T Get<T>() => Container.Resolve<T>();
     }
 }
