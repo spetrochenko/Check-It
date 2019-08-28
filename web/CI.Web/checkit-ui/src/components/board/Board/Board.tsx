@@ -1,13 +1,13 @@
 import React from "react";
 import BoardActionButton from "../../inputs/BoardActionButton";
 import { DragDropContext } from "react-beautiful-dnd";
-import { BoardViewModel, ColumnViewModel } from "../../../models/models";
+import { ColumnViewModel } from "../../../models/models";
 import { SortColumn } from "../../../actions/board/BoardActions";
 import TicketList from "../TicketList/TicketList";
 import { useStyles } from "./BoardStyles";
 import { connect } from "react-redux";
 
-const mapStateToProps = (state: BoardViewModel) => {
+const mapStateToProps = (state: any) => {
   return {
     state: state
   };
@@ -38,8 +38,11 @@ const Board = (props: any) => {
     );
   };
 
+  console.log(state.board.boardId);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <div>{state.board.title}</div>
       <div>
         <div className={classes.listContainer}>
           {state.board.columns.map((column: ColumnViewModel) => (
