@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { ListSubheader } from "@material-ui/core";
 import { LoadBoards } from "../../../actions/board/BoardActions";
 import Preloader from "../../preloader/Preloader";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = (state: any) => {
   return {
@@ -41,15 +42,21 @@ const BoardList = (props: any) => {
   const RenderBoards = () => {
     if (state.boardList.length > 0) {
       return state.boardList.map((item: CreateBoardViewModel) => (
-        <Card className={classes.cardStyle} key={item.title}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {item.title}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Link
+          to={`/board/${item.boardId}`}
+          className={classes.cardStyle}
+          key={item.boardId}
+        >
+          <Card>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {item.title}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
       ));
     }
 
