@@ -1,21 +1,22 @@
 ﻿using CI.Bussiness.Services.Interfaces;
 using CI.Data.Repositories.Interfaces;
 using CI.Models.Models;
+using System;
 
 namespace CI.Bussiness.Services.Implementations
 {
     public class ColumnService : IColumnService
     {
-        private readonly IColumnRepository columnRepository;
+        private readonly IGenericRepository<Column> repository;
 
-        public ColumnService(IColumnRepository columnRepository)
+        public ColumnService(IGenericRepository<Column> repository)
         {
-            this.columnRepository = columnRepository;
+            this.repository = repository;
         }
 
         public void CreateColumn(Column column)
         {
-            columnRepository.Create(column);
+            throw new NotImplementedException();
         }
     }
 }

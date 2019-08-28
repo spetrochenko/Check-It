@@ -21,5 +21,13 @@ namespace CI.Bussiness.ExecutableHelper
             return isExecuteExpression.Compile()
                                       .Invoke(repository);
         }
+
+        public static bool ExecuteUpdateMethod<T>(IGenericRepository<T> repository, T entity) where T : class, new()
+        {
+            Expression<Func<IGenericRepository<T>, bool>> isExecuteExpression = repo => repo.Update(entity);
+
+            return isExecuteExpression.Compile()
+                                      .Invoke(repository);
+        }
     }
 }

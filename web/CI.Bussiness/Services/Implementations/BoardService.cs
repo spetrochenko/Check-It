@@ -1,8 +1,10 @@
 ﻿using CI.Bussiness.Services.Interfaces;
 using CI.Data.Repositories.Interfaces;
 using CI.Models.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ExecuteHelper = CI.Bussiness.ExecutableHelper.ExecutableHelper;
 
 namespace CI.Bussiness.Services.Implementations
@@ -45,7 +47,9 @@ namespace CI.Bussiness.Services.Implementations
 
         public IEnumerable<Board> LoadAllBoards()
         {
-            return boardRepository.Load();
+            return boardRepository.Load()
+                                  .AsNoTracking()
+                                  .ToList();
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using CI.Data.Context;
 using CI.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace CI.Data.Repositories.Implementations
 {
@@ -83,49 +80,9 @@ namespace CI.Data.Repositories.Implementations
             }
         }
 
-        public IGenericRepository<TEntity> Include(Expression<Func<TEntity, object>> expression)
+        public IQueryable<TEntity> Load()
         {
-            domainContext.Set<TEntity>().Include(expression);
-
-            return this;
-        }
-
-        public IReadOnlyCollection<TEntity> Load()
-        {
-            using (domainContext)
-            {
-                domainContext.Set<TEntity>()
-                             .AsNoTracking()
-                             .Load();
-
-                return domainContext.Set<TEntity>().ToList();
-            }
-        }
-
-        public IReadOnlyCollection<TEntity> LoadBy(Expression<Func<TEntity, bool>> expression)
-        {
-            using (domainContext)
-            {
-                domainContext.Set<TEntity>()
-                    .AsNoTracking()
-                    .Where(expression)
-                    .Load();
-
-                return domainContext.Set<TEntity>().ToList();
-            }
-        }
-
-        public IReadOnlyCollection<TEntity> OrderBy(Expression<Func<TEntity, bool>> expression)
-        {
-            using (domainContext)
-            {
-                domainContext.Set<TEntity>()
-                    .AsNoTracking()
-                    .OrderBy(expression)
-                    .Load();
-
-                return domainContext.Set<TEntity>().ToList();
-            }
+            return domainContext.Set<TEntity>();
         }
     }
 }
