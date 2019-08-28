@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using CI.Bussiness.Services.Interfaces;
+﻿using CI.Bussiness.Services.Interfaces;
 using CI.Data.Repositories.Interfaces;
 using CI.Models.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using ExecuteHelper = CI.Bussiness.ExecutableHelper.ExecutableHelper;
 
 namespace CI.Bussiness.Services.Implementations
 {
     public class BoardService : IBoardService
     {
-        private readonly IBoardRepository boardRepository;
+        private readonly IGenericRepository<Board> boardRepository;
 
-        public BoardService(IBoardRepository boardRepository)
+        public BoardService(IGenericRepository<Board> boardRepository)
         {
             this.boardRepository = boardRepository;
         }
@@ -45,7 +47,9 @@ namespace CI.Bussiness.Services.Implementations
 
         public IEnumerable<Board> LoadAllBoards()
         {
-            return boardRepository.Load();
+            return boardRepository.Load()
+                                  .AsNoTracking()
+                                  .ToList();
         }
     }
 }
