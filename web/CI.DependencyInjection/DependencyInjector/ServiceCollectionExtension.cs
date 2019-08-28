@@ -11,13 +11,13 @@ namespace CI.DependencyInjection.DependencyInjector
     {
         public static void AddDependency(this IServiceCollection serviceCollection)
         {
+            //Registry services
             serviceCollection.AddTransient<IUserService, UserService>();
             serviceCollection.AddTransient<IBoardService, BoardService>();
             serviceCollection.AddTransient<IColumnService, ColumnService>();
 
-            serviceCollection.AddTransient<IUserRepository, UserRepository>();
-            serviceCollection.AddTransient<IBoardRepository, BoardRepository>();
-            serviceCollection.AddTransient<IColumnRepository, ColumnRepository>();
+            //Registry repository
+            serviceCollection.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         public static void AddDbConnection(this IServiceCollection serviceCollection)
