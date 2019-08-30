@@ -6,6 +6,7 @@ import { SortColumn } from "../../../actions/board/BoardActions";
 import TicketList from "../TicketList/TicketList";
 import { useStyles } from "./BoardStyles";
 import { connect } from "react-redux";
+import BoardActions from "../BoardActions/BoardActions";
 
 const mapStateToProps = (state: any) => {
   return {
@@ -38,11 +39,9 @@ const Board = (props: any) => {
     );
   };
 
-  console.log(state.board.boardId);
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div>{state.board.title}</div>
+      <BoardActions boardTitle={state.board.title} />
       <div>
         <div className={classes.listContainer}>
           {state.board.columns.map((column: ColumnViewModel) => (
