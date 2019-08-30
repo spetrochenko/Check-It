@@ -8,6 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { connect } from "react-redux";
 import { AddNewBoard } from "../../../actions/board/BoardActions";
 import { CreateBoardViewModel } from "../../../models/models";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { useStyles } from "./CreateBoardFormStyles";
 
 const mapDispatchToProps = {
   AddNewBoard
@@ -17,6 +19,7 @@ const CreateBoardForm = (props: any) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState();
   const { isOpen, setDialogOpen, AddNewBoard } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     setOpen(isOpen);
@@ -46,7 +49,9 @@ const CreateBoardForm = (props: any) => {
         aria-labelledby="form-dialog-title"
         maxWidth="xs"
       >
-        <DialogTitle id="form-dialog-title">Add new board</DialogTitle>
+        <DialogTitle id="form-dialog-title" className={classes.formTitle}>
+          <AddCircleOutlineIcon />
+        </DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
