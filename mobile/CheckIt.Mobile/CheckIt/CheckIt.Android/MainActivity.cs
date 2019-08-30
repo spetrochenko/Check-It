@@ -1,13 +1,8 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using CheckIt.Core;
-using CheckIt.Source.Core;
+using App = CheckIt.Core.App;
 
 namespace CheckIt.Droid
 {

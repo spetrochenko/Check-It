@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\CheckIt.Common\CheckIt.Common.csproj" />
     <ProjectReference Include="..\..\CheckIt.Data\CheckIt.Data.csproj" />
-    <ProjectReference Include="..\..\CheckIt.DependencyComposition\CheckIt.DependencyComposition.csproj" />
   </ItemGroup>
 
   <ItemGroup>
