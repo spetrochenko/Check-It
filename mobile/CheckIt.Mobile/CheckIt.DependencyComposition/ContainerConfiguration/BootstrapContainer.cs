@@ -1,19 +1,23 @@
 ﻿using Autofac;
+using CheckIt.Common.CommonModule;
+using CheckIt.Core.CoreModule;
+using CheckIt.Data.DataModule;
 
 namespace CheckIt.DependencyComposition.ContainerConfiguration
 {
     public class BootstrapContainer
     {
-        public IContainer CreateContainer(Module module = null)
+        public IContainer CreateContainer()
         {
             var containerBuilder = new ContainerBuilder();
 
-            if (module != null)
+            containerBuilder.ConfigureContainer(container =>
             {
-                containerBuilder.RegisterModule(module);
-            }
+                container.RegisterModule<CoreModule>();
+                container.RegisterModule<DataModule>();
+                container.RegisterModule<CommonModule>();
+            });
 
-            RegisterDependencies.Registry(containerBuilder);
             return containerBuilder.Build();
         }
     }

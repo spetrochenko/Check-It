@@ -16,7 +16,7 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -80,6 +80,7 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +119,10 @@
     <ProjectReference Include="..\..\CheckIt.Common\CheckIt.Common.csproj">
       <Project>{b5cba483-bf47-4912-b723-e73d3ab62ec3}</Project>
       <Name>CheckIt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CheckIt.DependencyComposition\CheckIt.DependencyComposition.csproj">
+      <Project>{114b2a10-a6c0-4458-bb30-43eaf9fe719e}</Project>
+      <Name>CheckIt.DependencyComposition</Name>
     </ProjectReference>
     <ProjectReference Include="..\CheckIt\CheckIt.Core.csproj">
       <Project>{A1866D2D-BD0B-4BE6-B474-C8979504051F}</Project>

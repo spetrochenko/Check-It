@@ -3,7 +3,7 @@
 
 namespace CheckIt.Common.Container
 {
-    public class AppContainer
+    public static class AppContainer
     {
         public static IContainer Container { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using CheckIt.Core.Components.Main;
 
-namespace CheckIt.Core.ViewModelsModule
+namespace CheckIt.Core.CoreModule
 {
-    internal sealed class ViewModelsModule : Module
+    public sealed class CoreModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

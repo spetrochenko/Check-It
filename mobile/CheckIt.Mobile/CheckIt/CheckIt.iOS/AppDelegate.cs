@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CheckIt.Core;
-using CheckIt.Source.Core;
-using Foundation;
+﻿using Foundation;
 using UIKit;
+using App = CheckIt.Core.App;
 
 namespace CheckIt.iOS
 {
