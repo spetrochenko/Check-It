@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using CheckIt.Data.Context;
+using CheckIt.Data.Repository.Implementation;
+using CheckIt.Data.Repository.Interface;
 
 namespace CheckIt.Data.DataModule
 {
@@ -6,7 +9,8 @@ namespace CheckIt.Data.DataModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder.RegisterType(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
+            builder.RegisterType<DomainContext>();
         }
     }
 }

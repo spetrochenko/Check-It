@@ -9,9 +9,12 @@
              xmlns:local="clr-namespace:CheckIt.Core.Components.Main">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding MyProperty}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding FirstName}" Placeholder="First name"/>
+            <Entry Text="{Binding LastName}" Placeholder="Last name"/>
+            <Entry Text="{Binding Email}" Placeholder="Email"/>
+            <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"/>
+
         </StackLayout>
     </ContentPage.Content>
 
