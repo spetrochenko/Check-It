@@ -14,6 +14,12 @@
             <Entry Text="{Binding LastName}" Placeholder="Last name"/>
             <Entry Text="{Binding Email}" Placeholder="Email"/>
             <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"/>
+            <Button Text="Add user" Command="{Binding AddUser}"/>
+
+            <Label Text="Contacts" Margin="0,20,0,0"/>
+            <ListView Margin="0,20,0,0" ItemsSource="{Binding Users}">
+                
+            </ListView>
 
         </StackLayout>
     </ContentPage.Content>

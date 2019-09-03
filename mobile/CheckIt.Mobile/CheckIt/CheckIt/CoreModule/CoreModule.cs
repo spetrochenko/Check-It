@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using CheckIt.Core.Command;
 using CheckIt.Core.Components.Main;
 
 namespace CheckIt.Core.CoreModule
@@ -7,7 +8,8 @@ namespace CheckIt.Core.CoreModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MainViewModel>();
+            builder.RegisterType<MainViewModel>().AsSelf();
+            builder.RegisterType<BaseCommand>().AsSelf();
         }
     }
 }

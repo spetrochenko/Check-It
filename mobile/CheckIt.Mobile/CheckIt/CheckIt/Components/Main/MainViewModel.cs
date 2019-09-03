@@ -1,7 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using CheckIt.Common.Entities;
+﻿using CheckIt.Common.Entities;
+using CheckIt.Core.Command;
 using CheckIt.Core.ViewModelsMarker;
+using CheckIt.Data.Repository.Interface;
 using PropertyChanged;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CheckIt.Core.Components.Main
 {
@@ -18,9 +22,34 @@ namespace CheckIt.Core.Components.Main
 
         public ObservableCollection<User> Users { get; set; }
 
-        public MainViewModel()
+        public ICommand AddUser { get; }
+
+        private readonly IGenericRepository<User> repository;
+
+        public MainViewModel(IGenericRepository<User> repository)
         {
-            Users = new ObservableCollection<User>();
+            this.repository = repository;
+            Users = new ObservableCollection<User>(GetUsers());
+            AddUser = new BaseCommand(CreateUser);
+        }
+
+        private void CreateUser(object obj)
+        {
+            var user = new User
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = Email,
+                Password = Password
+            };
+
+            Users.Add(user);
+            repository.Create(user);
+        }
+
+        private IEnumerable<User> GetUsers()
+        {
+            return repository.Load();
         }
     }
 }

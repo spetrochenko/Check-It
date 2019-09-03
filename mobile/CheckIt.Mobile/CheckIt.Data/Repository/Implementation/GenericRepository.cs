@@ -1,10 +1,11 @@
-﻿using CheckIt.Data.Repository.Interface;
+﻿using CheckIt.Data.Context;
+using CheckIt.Data.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace CheckIt.Data.Repository.Implementation
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, new()
+    internal sealed class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, new()
     {
         private readonly DomainContext domainContext;
 
