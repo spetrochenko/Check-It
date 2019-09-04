@@ -5,6 +5,7 @@ using CheckIt.Data.Repository.Interface;
 using PropertyChanged;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CheckIt.Core.Components.Main
@@ -29,7 +30,7 @@ namespace CheckIt.Core.Components.Main
         public MainViewModel(IGenericRepository<User> repository)
         {
             this.repository = repository;
-            Users = new ObservableCollection<User>(GetUsers());
+
             AddUser = new BaseCommand(CreateUser);
         }
 
@@ -50,6 +51,12 @@ namespace CheckIt.Core.Components.Main
         private IEnumerable<User> GetUsers()
         {
             return repository.Load();
+        }
+
+        public async Task InitAsync()
+        {
+            var users = await Task.Run(() => GetUsers());
+            Users = new ObservableCollection<User>(users);
         }
     }
 }

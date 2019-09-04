@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 
 
 namespace CheckIt.Common.Container
@@ -7,6 +8,20 @@ namespace CheckIt.Common.Container
     {
         public static IContainer Container { get; set; }
 
-        public static T Get<T>() => Container.Resolve<T>();
+        public static T Get<T>()
+        {
+            try
+            {
+                return Container.Resolve<T>();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
+
+        }
     }
 }

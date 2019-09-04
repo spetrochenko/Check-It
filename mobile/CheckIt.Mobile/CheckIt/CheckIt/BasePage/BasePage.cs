@@ -1,5 +1,4 @@
 ﻿using CheckIt.Common.Container;
-using CheckIt.Core.Components.Main;
 using CheckIt.Core.ViewModelsMarker;
 using Xamarin.Forms;
 
@@ -7,13 +6,15 @@ namespace CheckIt.Core.BasePage
 {
     public class BasePage<TViewModel> : ContentPage where TViewModel : IViewModel
     {
-        public IViewModel GetViewModel { get; private set; }
+        public IViewModel GetViewModel { get; }
 
         public BasePage()
         {
-            GetViewModel = AppContainer.Get<MainViewModel>();
+            GetViewModel = AppContainer.Get<TViewModel>();
 
             BindingContext = GetViewModel;
+
+            Device.BeginInvokeOnMainThread(async () => await GetViewModel.InitAsync());
         }
     }
 }
