@@ -4,7 +4,6 @@ namespace CheckIt.Core.ViewModelsMarker
 {
     public interface IViewModel
     {
-
         Task InitAsync();
     }
 }

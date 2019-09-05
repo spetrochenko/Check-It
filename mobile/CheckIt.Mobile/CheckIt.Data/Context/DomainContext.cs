@@ -15,12 +15,13 @@ namespace CheckIt.Data.Context
         {
             databaseName = DependencyService.Get<IDataProvider>()
                                             .GetPath();
+
+            Database.EnsureCreatedAsync();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"FileName={databaseName}");
-            Database.EnsureCreated();
             base.OnConfiguring(optionsBuilder);
         }
     }

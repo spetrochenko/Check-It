@@ -30,7 +30,6 @@ namespace CheckIt.Core.Components.Main
         public MainViewModel(IGenericRepository<User> repository)
         {
             this.repository = repository;
-
             AddUser = new BaseCommand(CreateUser);
         }
 
