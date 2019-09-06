@@ -10,8 +10,6 @@ namespace CheckIt.Data.DataModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType(typeof(GenericRepository<>))
-            //       .As(typeof(IGenericRepository<>));
             builder.RegisterType<GenericRepository<User>>().As<IGenericRepository<User>>();
             builder.RegisterType<DomainContext>().AsSelf();
         }
