@@ -43,6 +43,15 @@ namespace CheckIt.Core.Components.Main
 
             Users.Add(user);
             repository.Create(user);
+            ClearInput();
+        }
+
+        private void ClearInput()
+        {
+            FirstName = null;
+            LastName = null;
+            Email = null;
+            Password = null;
         }
 
         private IEnumerable<User> GetUsers()

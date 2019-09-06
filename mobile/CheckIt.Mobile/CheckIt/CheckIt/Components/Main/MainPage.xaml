@@ -17,8 +17,20 @@
             <Button Text="Add user" Command="{Binding AddUser}"/>
 
             <Label Text="Contacts" Margin="0,20,0,0"/>
-            <ListView Margin="0,20,0,0" ItemsSource="{Binding Users}">
-                
+            <ListView Margin="0,20,0,0" ItemsSource="{Binding Users}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding Email}" FontSize="18"/>
+                                    <Label Text="{Binding FirstName}"/>
+                                    <Label Text="{Binding LastName}"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
         </StackLayout>
