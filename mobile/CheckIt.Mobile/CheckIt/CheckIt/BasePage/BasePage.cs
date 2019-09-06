@@ -1,12 +1,12 @@
 ﻿using CheckIt.Common.Container;
-using CheckIt.Core.ViewModelsMarker;
+using CheckIt.Core.BaseViewModel;
 using Xamarin.Forms;
 
 namespace CheckIt.Core.BasePage
 {
-    public class BasePage<TViewModel> : ContentPage where TViewModel : IViewModel
+    public class BasePage<TViewModel> : ContentPage where TViewModel : BaseModel
     {
-        public IViewModel GetViewModel { get; }
+        public BaseModel GetViewModel { get; }
 
         public BasePage()
         {

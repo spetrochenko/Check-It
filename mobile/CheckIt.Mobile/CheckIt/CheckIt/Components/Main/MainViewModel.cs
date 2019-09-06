@@ -1,17 +1,15 @@
 ﻿using CheckIt.Common.Entities;
 using CheckIt.Core.Command;
-using CheckIt.Core.ViewModelsMarker;
 using CheckIt.Data.Repository.Interface;
-using PropertyChanged;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CheckIt.Core.BaseViewModel;
 
 namespace CheckIt.Core.Components.Main
 {
-    [AddINotifyPropertyChangedInterface]
-    public class MainViewModel : IViewModel
+    public class MainViewModel : BaseModel
     {
         public string FirstName { get; set; }
 
@@ -52,7 +50,7 @@ namespace CheckIt.Core.Components.Main
             return repository.Load();
         }
 
-        public async Task InitAsync()
+        public override async Task InitAsync()
         {
             var users = await Task.Run(() => GetUsers());
             Users = new ObservableCollection<User>(users);
