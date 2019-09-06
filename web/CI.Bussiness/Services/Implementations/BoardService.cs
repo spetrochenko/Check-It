@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ExecuteHelper = CI.Bussiness.ExecutableHelper.ExecutableHelper;
 
 namespace CI.Bussiness.Services.Implementations
 {
@@ -27,7 +26,7 @@ namespace CI.Bussiness.Services.Implementations
 
             board.CreatedTime = DateTime.Now;
 
-            return ExecuteHelper.ExecuteCreateMethod(boardRepository, board);
+            return boardRepository.Create(board);
         }
 
         public bool DeleteBoard(Board board)
@@ -37,7 +36,7 @@ namespace CI.Bussiness.Services.Implementations
                 return false;
             }
 
-            return ExecuteHelper.ExecuteDeleteMethod(boardRepository, board);
+            return boardRepository.Update(board);
         }
 
         public Board LoadBoardById(int id)
