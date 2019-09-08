@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CheckIt.Core.Command
+namespace CheckIt.Core.Utils.Command
 {
     internal sealed class BaseCommand : ICommand
     {

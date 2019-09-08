@@ -1,11 +1,11 @@
 ﻿using CheckIt.Common.Entities;
-using CheckIt.Core.Command;
 using CheckIt.Data.Repository.Interface;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CheckIt.Core.BaseViewModel;
+using CheckIt.Core.Utils.BaseViewModel;
+using CheckIt.Core.Utils.Command;
 
 namespace CheckIt.Core.Components.Main
 {

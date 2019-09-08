@@ -1,8 +1,8 @@
 ﻿using CheckIt.Common.Container;
-using CheckIt.Core.BaseViewModel;
+using CheckIt.Core.Utils.BaseViewModel;
 using Xamarin.Forms;
 
-namespace CheckIt.Core.BasePage
+namespace CheckIt.Core.Utils.BasePage
 {
     public class BasePage<TViewModel> : ContentPage where TViewModel : BaseModel
     {

@@ -10,9 +10,9 @@ namespace CheckIt.Droid.DataProvider
 {
     public class AndroidDataProvider : IDataProvider
     {
-        public string GetPath(string database = Constants.DB_NAME)
+        public string GetPath()
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), database);
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Constants.DB_NAME);
         }
     }
 }

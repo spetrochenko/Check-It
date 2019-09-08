@@ -1,7 +1,8 @@
 ﻿using Autofac;
-using CheckIt.Core.BaseViewModel;
-using CheckIt.Core.Command;
 using CheckIt.Core.Components.Main;
+using CheckIt.Core.Utils.BaseViewModel;
+using CheckIt.Core.Utils.Command;
+using CheckIt.Core.Utils.Navigation;
 
 namespace CheckIt.Core.CoreModule
 {
@@ -12,6 +13,7 @@ namespace CheckIt.Core.CoreModule
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<MainViewModel>().As<BaseModel>();
             builder.RegisterType<BaseCommand>().AsSelf();
+            builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
         }
     }
 }
