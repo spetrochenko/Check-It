@@ -1,4 +1,5 @@
-﻿using CheckIt.Core.Components.Main;
+﻿using CheckIt.Common.Container;
+using CheckIt.Core.Components.Main;
 using CheckIt.Core.Utils.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,12 +11,12 @@ namespace CheckIt.Core
     {
         private readonly INavigationService navigationService;
 
-        public App(INavigationService navigationService)
+        public App()
         {
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
 
-            this.navigationService = navigationService;
+            navigationService = AppContainer.Get<INavigationService>();
         }
 
         protected override void OnStart()
