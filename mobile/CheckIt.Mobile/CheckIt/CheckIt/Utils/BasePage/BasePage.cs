@@ -4,11 +4,11 @@ using Xamarin.Forms;
 
 namespace CheckIt.Core.Utils.BasePage
 {
-    public class BasePage<TViewModel> : ContentPage where TViewModel : BaseModel
+    public abstract class BasePage<TViewModel> : ContentPage where TViewModel : BaseModel
     {
         public BaseModel GetViewModel { get; }
 
-        public BasePage()
+        protected BasePage()
         {
             GetViewModel = AppContainer.Get<TViewModel>();
 

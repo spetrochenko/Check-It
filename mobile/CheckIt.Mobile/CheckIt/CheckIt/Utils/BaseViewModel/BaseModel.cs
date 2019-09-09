@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using PropertyChanged;
+﻿using PropertyChanged;
+using System.Threading.Tasks;
 
 namespace CheckIt.Core.Utils.BaseViewModel
 {
