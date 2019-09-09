@@ -1,4 +1,5 @@
 ﻿using CheckIt.Core.Components.Main;
+using CheckIt.Core.Utils.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,15 +8,19 @@ namespace CheckIt.Core
 {
     public partial class App : Application
     {
-        public App()
+        private readonly INavigationService navigationService;
+
+        public App(INavigationService navigationService)
         {
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
+
+            this.navigationService = navigationService;
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            SetUpNavigation();
         }
 
         protected override void OnSleep()
@@ -26,6 +31,13 @@ namespace CheckIt.Core
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        private void SetUpNavigation()
+        {
+            navigationService.Configure(nameof(Components.Main.MainPage), typeof(MainPage));
+            navigationService.Configure(nameof(MainPageBase), typeof(MainPageBase));
+            navigationService.SetRootPage(nameof(MainPageBase));
         }
     }
 }
