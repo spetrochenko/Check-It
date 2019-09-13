@@ -1,11 +1,11 @@
 ﻿using Xamarin.Forms.Xaml;
 
-namespace CheckIt.Core.Components.Main
+namespace CheckIt.Core.Components.AccountCredential
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage
+    public partial class AccountCredential
     {
-        public MainPage()
+        public AccountCredential()
         {
             InitializeComponent();
         }

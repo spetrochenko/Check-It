@@ -153,7 +153,7 @@ namespace CheckIt.Core.Utils.Navigation
                                    && p[0].ParameterType == parameter.GetType();
                         });
 
-                    parameters = new[] { parameter };
+                    parameters = new object[] { parameter };
                 }
 
                 if (constructor == null)

@@ -1,57 +1,33 @@
 ﻿using CheckIt.Common.Entities;
+using CheckIt.Core.Utils.BaseViewModel;
+using CheckIt.Core.Utils.Command;
+using CheckIt.Core.Utils.Navigation;
 using CheckIt.Data.Repository.Interface;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CheckIt.Core.Utils.BaseViewModel;
-using CheckIt.Core.Utils.Command;
 
 namespace CheckIt.Core.Components.Main
 {
-    public class MainViewModel : BaseModel
+    public sealed class MainViewModel : BaseModel
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Password { get; set; }
+        public ICommand OpenCreationPage { get; set; }
 
         public ObservableCollection<User> Users { get; set; }
 
-        public ICommand AddUser { get; }
-
         private readonly IGenericRepository<User> repository;
+        private readonly INavigationService navigationService;
 
-        public MainViewModel(IGenericRepository<User> repository)
+        public MainViewModel(IGenericRepository<User> repository, INavigationService navigationService)
         {
             this.repository = repository;
-            AddUser = new BaseCommand(CreateUser);
+            this.navigationService = navigationService;
         }
 
-        private void CreateUser(object obj)
+        private async void OpenNewPage(object obj)
         {
-            var user = new User
-            {
-                FirstName = FirstName,
-                LastName = LastName,
-                Email = Email,
-                Password = Password
-            };
-
-            Users.Add(user);
-            repository.Create(user);
-            ClearInput();
-        }
-
-        private void ClearInput()
-        {
-            FirstName = null;
-            LastName = null;
-            Email = null;
-            Password = null;
+            await navigationService.NavigateAsync(nameof(NameCredential.NameCredential));
         }
 
         private IEnumerable<User> GetUsers()
@@ -63,6 +39,7 @@ namespace CheckIt.Core.Components.Main
         {
             var users = await Task.Run(() => GetUsers());
             Users = new ObservableCollection<User>(users);
+            OpenCreationPage = new BaseCommand(OpenNewPage);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿
 using Android.App;
 using Android.Runtime;
-using CheckIt.Common.Container;
 using CheckIt.DependencyComposition.ContainerConfiguration;
 using System;
+using static CheckIt.Common.Container.AppContainer;
 
 namespace CheckIt.Droid
 {
@@ -17,7 +17,7 @@ namespace CheckIt.Droid
         {
             var container = new BootstrapContainer();
 
-            AppContainer.Container = container.CreateContainer();
+            Container = container.CreateContainer();
         }
     }
 }

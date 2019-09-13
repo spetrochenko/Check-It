@@ -6,7 +6,7 @@ namespace CheckIt.Core.Utils.BasePage
 {
     public abstract class BasePage<TViewModel> : ContentPage where TViewModel : BaseModel
     {
-        public BaseModel GetViewModel { get; }
+        public TViewModel GetViewModel { get; }
 
         protected BasePage()
         {

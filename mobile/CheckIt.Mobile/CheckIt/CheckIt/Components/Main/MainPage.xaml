@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<local:MainPageBase
+<basePage:BasePage
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:TypeArguments="local:MainViewModel"
              mc:Ignorable="d"
              x:Class="CheckIt.Core.Components.Main.MainPage"
-             xmlns:local="clr-namespace:CheckIt.Core.Components.Main">
+             xmlns:basePage="clr-namespace:CheckIt.Core.Utils.BasePage;assembly=CheckIt.Core"
+             xmlns:local="clr-namespace:CheckIt.Core.Components.Main;assembly=CheckIt.Core">
     <ContentPage.Content>
         <StackLayout>
 
-            <Entry Text="{Binding FirstName}" Placeholder="First name"/>
-            <Entry Text="{Binding LastName}" Placeholder="Last name"/>
-            <Entry Text="{Binding Email}" Placeholder="Email"/>
-            <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True"/>
-            <Button Text="Add user" Command="{Binding AddUser}"/>
+            <Button Text="Add new user" Command="{Binding OpenCreationPage}"/>
 
             <Label Text="Contacts" Margin="0,20,0,0"/>
             <ListView Margin="0,20,0,0" ItemsSource="{Binding Users}" HasUnevenRows="True">
@@ -36,4 +34,4 @@
         </StackLayout>
     </ContentPage.Content>
 
-</local:MainPageBase>
+</basePage:BasePage>

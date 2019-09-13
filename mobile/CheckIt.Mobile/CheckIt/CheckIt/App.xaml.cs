@@ -1,22 +1,23 @@
-﻿using CheckIt.Common.Container;
+﻿using CheckIt.Core.Components.AccountCredential;
 using CheckIt.Core.Components.Main;
+using CheckIt.Core.Components.NameCredential;
 using CheckIt.Core.Utils.Navigation;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static CheckIt.Common.Container.AppContainer;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CheckIt.Core
 {
-    public partial class App : Application
+    public partial class App
     {
         private readonly INavigationService navigationService;
 
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new Components.Main.MainPage();
 
-            navigationService = AppContainer.Get<INavigationService>();
+            navigationService = Get<INavigationService>();
         }
 
         protected override void OnStart()
@@ -37,8 +38,10 @@ namespace CheckIt.Core
         private void SetUpNavigation()
         {
             navigationService.Configure(nameof(Components.Main.MainPage), typeof(MainPage));
-            navigationService.Configure(nameof(MainPageBase), typeof(MainPageBase));
-            navigationService.SetRootPage(nameof(MainPageBase));
+            navigationService.Configure(nameof(AccountCredential), typeof(AccountCredential));
+            navigationService.Configure(nameof(NameCredential), typeof(NameCredential));
+
+            navigationService.SetRootPage(nameof(Components.Main.MainPage));
         }
     }
 }
