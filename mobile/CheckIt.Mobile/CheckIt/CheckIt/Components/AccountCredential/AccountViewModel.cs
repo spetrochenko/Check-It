@@ -43,15 +43,30 @@ namespace CheckIt.Core.Components.AccountCredential
 
         private async void CreateNewUser(object obj)
         {
+            var newUser = new User
+            {
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Email = this.Email,
+                Password = this.Password
+            };
 
+            repository.Create(newUser);
 
             await navigationService.NavigateAsync(nameof(Main.MainPage));
         }
 
         public override async Task InitAsync(AccountPageParameters parameter)
         {
+            InitName(parameter);
             await Task.Run(() => AddUser = new BaseCommand(CreateNewUser));
             SuggestedEmail = CreateEmail();
+        }
+
+        private void InitName(AccountPageParameters parameter)
+        {
+            FirstName = parameter.FirstName;
+            LastName = parameter.LastName;
         }
     }
 }

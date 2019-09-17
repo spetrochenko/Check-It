@@ -11,10 +11,10 @@ namespace CheckIt.Core.Utils.BasePage
 
         public TParameter GetParameters { get; }
 
-        protected ParameterizedBasePage()
+        protected ParameterizedBasePage(TParameter parameter)
         {
             GetViewModel = AppContainer.Get<TViewModel>();
-            GetParameters = AppContainer.Get<TParameter>();
+            GetParameters = parameter;
 
             BindingContext = GetViewModel;
 

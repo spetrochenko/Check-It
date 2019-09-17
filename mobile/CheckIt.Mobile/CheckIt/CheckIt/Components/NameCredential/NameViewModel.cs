@@ -1,4 +1,5 @@
-﻿using CheckIt.Core.Utils.BaseViewModel;
+﻿using CheckIt.Core.Components.AccountCredential;
+using CheckIt.Core.Utils.BaseViewModel;
 using CheckIt.Core.Utils.Command;
 using CheckIt.Core.Utils.Navigation;
 using System.Threading.Tasks;
@@ -28,7 +29,13 @@ namespace CheckIt.Core.Components.NameCredential
 
         private async void OpenNewPage(object obj)
         {
-            await navigationService.NavigateAsync(nameof(AccountCredential.AccountCredential));
+            var parameters = new AccountPageParameters
+            {
+                FirstName = this.FirstName,
+                LastName = this.LastName
+            };
+
+            await navigationService.NavigateAsync(nameof(AccountCredential.AccountCredential), parameters);
         }
     }
 }

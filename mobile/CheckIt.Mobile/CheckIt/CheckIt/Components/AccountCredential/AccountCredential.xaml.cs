@@ -5,7 +5,7 @@ namespace CheckIt.Core.Components.AccountCredential
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountCredential
     {
-        public AccountCredential()
+        public AccountCredential(AccountPageParameters parameters) : base(parameters)
         {
             InitializeComponent();
         }
