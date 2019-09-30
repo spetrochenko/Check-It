@@ -2,9 +2,9 @@
 using CheckIt.Core.Utils.BaseViewModel;
 using CheckIt.Core.Utils.Command;
 using CheckIt.Core.Utils.Navigation;
+using CheckIt.Core.Utils.ObservableCollectionExtension;
 using CheckIt.Data.Repository.Interface;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -14,7 +14,7 @@ namespace CheckIt.Core.Components.Main
     {
         public ICommand OpenCreationPage { get; set; }
 
-        public ObservableCollection<User> Users { get; set; }
+        public ExtendedObservableCollection<User> Users { get; set; }
 
         private readonly IGenericRepository<User> repository;
         private readonly INavigationService navigationService;
@@ -23,6 +23,7 @@ namespace CheckIt.Core.Components.Main
         {
             this.repository = repository;
             this.navigationService = navigationService;
+            Users = new ExtendedObservableCollection<User>();
         }
 
         private async void OpenNewPage(object obj)
@@ -38,7 +39,7 @@ namespace CheckIt.Core.Components.Main
         public override async Task InitAsync()
         {
             var users = await Task.Run(() => GetUsers());
-            Users = new ObservableCollection<User>(users);
+            Users.AddRange(users);
             OpenCreationPage = new BaseCommand(OpenNewPage);
         }
     }
