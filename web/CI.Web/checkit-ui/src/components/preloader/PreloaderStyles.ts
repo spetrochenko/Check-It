@@ -2,9 +2,14 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    progress: {
-      marginTop: theme.spacing(10),
-      marginLeft: theme.spacing(40)
+    container: {
+      backgroundColor: '#ab47bc',
+    },
+    loginAligment: {
+      marginLeft: "440px",
+      height: '700px',
+      display: "flex",
+      alignItems: "center"
     }
   })
 );
