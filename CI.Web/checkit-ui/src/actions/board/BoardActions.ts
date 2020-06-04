@@ -2,8 +2,7 @@ import {
   ADD_COLUMN,
   DRAG_HAPPENED,
   ADD_BOARD,
-  LOAD_BOARDS,
-  LOAD_BOARDS_REQUEST
+  LOAD_BOARDS
 } from "./BoardActionConstants";
 import {
   CreateColumnViewModel,
@@ -38,9 +37,6 @@ export const AddNewBoard = (boardView: CreateBoardViewModel) => {
 
 export const LoadBoards = () => {
   return (dispatch: any) => {
-    dispatch({
-      type: LOAD_BOARDS_REQUEST
-    });
 
     setTimeout(() => {
       boardApiController.loadBoards().then(response => {
