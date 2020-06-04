@@ -1,6 +1,8 @@
 import React from "react";
 import { useStyles } from "./AppStyles";
-import Login from "../../login/Login";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import "typeface-roboto";
 
 export const App = () => {
@@ -8,9 +10,9 @@ export const App = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.loginAligment}>
-        <Login />
-      </div>
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 };
