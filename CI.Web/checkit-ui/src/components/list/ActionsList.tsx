@@ -10,10 +10,16 @@ import { useStyles } from "./ActionsListStyles";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { Collapse, ListSubheader } from "@material-ui/core";
+import CreateBoardForm from "../forms/boardForm/CreateBoardForm";
 
 const ActionList = () => {
   const classes = useStyles();
-  const [isOpen, setOpen] = useState(false);
+  const [isOpenDialog, setOpenDialog] = useState(false);
+  const [isOpenDropDawn, setOpenDropDawn] = useState(false);
+
+  const handleDialogOpen = () => {
+    setOpenDialog(!isOpenDialog);
+  };
 
   return (
     <div className={classes.root}>
@@ -26,10 +32,10 @@ const ActionList = () => {
         }
       >
         <ListItem button>
-          <ListItemIcon>
+          <ListItemIcon onClick={handleDialogOpen}>
             <CreateIcon />
           </ListItemIcon>
-          <ListItemText primary="Add new board" />
+          <ListItemText primary="Add new board" onClick={handleDialogOpen} />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -37,14 +43,14 @@ const ActionList = () => {
           </ListItemIcon>
           <ListItemText primary="Add new group" />
         </ListItem>
-        <ListItem button onClick={() => setOpen(!isOpen)}>
+        <ListItem button onClick={() => setOpenDropDawn(!isOpenDropDawn)}>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
           <ListItemText primary="My groups" />
-          {isOpen ? <ExpandLess /> : <ExpandMore />}
+          {isOpenDropDawn ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse in={isOpen} timeout="auto" unmountOnExit>
+        <Collapse in={isOpenDropDawn} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button className={classes.nested}>
               <ListItemText primary="Some group" />
@@ -52,6 +58,8 @@ const ActionList = () => {
           </List>
         </Collapse>
       </List>
+
+      <CreateBoardForm isOpen={isOpenDialog} setDialogOpen={handleDialogOpen} />
     </div>
   );
 };

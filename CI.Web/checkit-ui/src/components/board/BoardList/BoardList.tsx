@@ -7,10 +7,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { ListSubheader } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
 
 const mapStateToProps = (state: CreateBoardViewModel[]) => {
   return {
-    state: state
+    state: state,
   };
 };
 
@@ -27,15 +28,28 @@ const BoardList = (props: any) => {
     </Typography>
   );
 
+  const getPath = (title: String) => {
+    return "/board/" + title.toLowerCase().replace(' ', '_');
+  };
+
   const RenderBoards = () => {
     if (props.state.boardList.length > 0) {
       return props.state.boardList.map((item: CreateBoardViewModel) => (
         <Card className={classes.cardStyle} key={item.title}>
           <CardActionArea>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {item.title}
-              </Typography>
+              <NavLink
+                to={getPath(item.title)}
+                exact
+                style={{
+                  textDecoration: "none",
+                  color: "#000",
+                }}
+              >
+                <Typography gutterBottom variant="h5" component="h2">
+                  {item.title}
+                </Typography>
+              </NavLink>
             </CardContent>
           </CardActionArea>
         </Card>

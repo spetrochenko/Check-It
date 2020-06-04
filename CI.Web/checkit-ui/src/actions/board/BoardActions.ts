@@ -2,23 +2,23 @@ import {
   ADD_COLUMN,
   DRAG_HAPPENED,
   ADD_BOARD,
-  LOAD_BOARDS
+  LOAD_BOARDS,
 } from "./BoardActionConstants";
 import {
   CreateColumnViewModel,
-  CreateBoardViewModel
+  CreateBoardViewModel,
 } from "../../models/models";
 import {
   columnApiController,
-  boardApiController
+  boardApiController,
 } from "../../server/apiDefenition";
 
 export const AddNewColumn = (columnView: CreateColumnViewModel) => {
   return (dispatch: any) => {
-    columnApiController.createColumn(columnView).then(response => {
+    columnApiController.createColumn(columnView).then((response) => {
       dispatch({
         type: ADD_COLUMN,
-        payload: response.title
+        payload: response.title,
       });
     });
   };
@@ -26,23 +26,20 @@ export const AddNewColumn = (columnView: CreateColumnViewModel) => {
 
 export const AddNewBoard = (boardView: CreateBoardViewModel) => {
   return (dispatch: any) => {
-    boardApiController.createBoard(boardView).then(response => {
-      dispatch({
-        type: ADD_BOARD,
-        payload: response
-      });
+    dispatch({
+      type: ADD_BOARD,
+      payload: boardView,
     });
   };
 };
 
 export const LoadBoards = () => {
   return (dispatch: any) => {
-
     setTimeout(() => {
-      boardApiController.loadBoards().then(response => {
+      boardApiController.loadBoards().then((response) => {
         dispatch({
           type: LOAD_BOARDS,
-          payload: response
+          payload: response,
         });
       });
     }, 2000);
@@ -63,7 +60,7 @@ export const SortColumn = (
       droppableIdEnd,
       droppableIndexStart,
       droppableIndexEnd,
-      draggableId
-    }
+      draggableId,
+    },
   };
 };

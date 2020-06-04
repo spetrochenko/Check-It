@@ -15,11 +15,11 @@ let ticketId = 5;
 
 const initialState: BoardViewModel = {
   boardId: 1,
-  title: "testBoard",
+  title: "Start board",
   columns: [
     {
       columnId: 0,
-      title: "testColumn",
+      title: "Backlog",
       tickets: [
         {
           ticketId: "0",
@@ -35,7 +35,28 @@ const initialState: BoardViewModel = {
     },
     {
       columnId: 1,
-      title: "testColumn1",
+      title: "Active",
+      tickets: [
+        {
+          ticketId: "2",
+          title: "ticket2",
+          creationDate: "date2"
+        },
+        {
+          ticketId: "3",
+          title: "ticket3",
+          creationDate: "date3"
+        },
+        {
+          ticketId: "4",
+          title: "ticket4",
+          creationDate: "date4"
+        }
+      ]
+    },
+    {
+      columnId: 3,
+      title: "Resolved",
       tickets: [
         {
           ticketId: "2",

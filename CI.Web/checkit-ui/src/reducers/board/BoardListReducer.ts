@@ -6,7 +6,7 @@ import {
 
 const initialState: CreateBoardViewModel[] = [
   {
-    title: "testBoard1"
+    title: "Start board"
   }
 ];
 
