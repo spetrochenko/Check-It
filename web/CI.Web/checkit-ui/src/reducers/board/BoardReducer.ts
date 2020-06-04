@@ -10,13 +10,72 @@ import {
 
 import { ADD_TICKET } from "../../actions/column/ColumnActionConstants";
 
-let columnId = 0;
-let ticketId = 0;
+let columnId = 2;
+let ticketId = 5;
 
 const initialState: BoardViewModel = {
-  boardId: 0,
-  title: "testBoard",
-  columns: []
+  boardId: 1,
+  title: "Start board",
+  columns: [
+    {
+      columnId: 0,
+      title: "Backlog",
+      tickets: [
+        {
+          ticketId: "0",
+          title: "ticket0",
+          creationDate: "date0"
+        },
+        {
+          ticketId: "1",
+          title: "ticket1",
+          creationDate: "date1"
+        }
+      ]
+    },
+    {
+      columnId: 1,
+      title: "Active",
+      tickets: [
+        {
+          ticketId: "2",
+          title: "ticket2",
+          creationDate: "date2"
+        },
+        {
+          ticketId: "3",
+          title: "ticket3",
+          creationDate: "date3"
+        },
+        {
+          ticketId: "4",
+          title: "ticket4",
+          creationDate: "date4"
+        }
+      ]
+    },
+    {
+      columnId: 3,
+      title: "Resolved",
+      tickets: [
+        {
+          ticketId: "2",
+          title: "ticket2",
+          creationDate: "date2"
+        },
+        {
+          ticketId: "3",
+          title: "ticket3",
+          creationDate: "date3"
+        },
+        {
+          ticketId: "4",
+          title: "ticket4",
+          creationDate: "date4"
+        }
+      ]
+    }
+  ]
 };
 
 export const BoardReducer = (state = initialState, action: any) => {
@@ -27,7 +86,7 @@ export const BoardReducer = (state = initialState, action: any) => {
         title: action.payload,
         tickets: []
       };
-      columnId += 1;
+
       return { ...state, columns: [...state.columns, newColumn] };
 
     case ADD_TICKET: {

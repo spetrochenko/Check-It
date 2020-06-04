@@ -13,7 +13,7 @@ ReactDOM.render(
       <Switch>
         <Route exact key="/boards" path="/boards" component={App} />
         <Route exact key="/" path="/" component={Login} />
-        <Route exact key="/board/?:id" path="/board/?:id" component={Board} />
+        <Route exact key="/board/:id?" path="/board/:id?" component={Board} />
         <Route exact key="/account" path="/account" component={Login} />
         <Route exact key="/report" path="/report" component={Login} />
       </Switch>

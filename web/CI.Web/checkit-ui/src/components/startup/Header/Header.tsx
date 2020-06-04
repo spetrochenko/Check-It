@@ -11,68 +11,10 @@ import AuthForm from "../../forms/authForm/AuthForm";
 
 export const Header = () => {
   const classes = useStyles();
-  const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const [
     mobileMoreAnchorElement,
-    setMobileMoreAnchorElement
+    setMobileMoreAnchorElement,
   ] = useState<null | HTMLElement>(null);
-  const [isDialogOpen, setDialogOpen] = useState(false);
-  const [isSignIn, setSignIn] = useState();
-
-  const isMenuOpen = Boolean(anchorElement);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorElement);
-
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorElement(null);
-  }
-
-  function handleMenuClose() {
-    setAnchorElement(null);
-    handleMobileMenuClose();
-  }
-
-  function handleOpenSignInDialog() {
-    setSignIn(true);
-    setDialogOpen(true);
-  }
-
-  function handleOpenSignUpDialog() {
-    setSignIn(false);
-    setDialogOpen(true);
-  }
-
-  function handleMobileMenuOpen(event: React.MouseEvent<HTMLElement>) {
-    setMobileMoreAnchorElement(event.currentTarget);
-  }
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorElement}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    />
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorElement}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleMobileMenuClose}>Sign In</MenuItem>
-      <MenuItem onClick={handleMobileMenuClose}>Sign Up</MenuItem>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
@@ -83,33 +25,26 @@ export const Header = () => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Button onClick={handleOpenSignInDialog}>
-              <Typography className={classes.buttonText}>Sign In</Typography>
-            </Button>
-            <Button onClick={handleOpenSignUpDialog}>
-              <Typography className={classes.buttonText}>Sign Up</Typography>
-            </Button>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="Show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
+          <Typography variant="body2" style={{
+              marginTop: "5px",
+              marginRight: "20px",
+              textAlign: "center"
+            }}>
+              Reports
+            </Typography>
+            <Typography variant="body2" style={{
+              marginTop: "5px",
+              marginRight: "20px",
+              textAlign: "center"
+            }}>
+              Account
+            </Typography>
+            <Typography variant="h6" noWrap>
+              Hi, Siarhei!
+            </Typography>
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      <AuthForm
-        setDialogOpen={setDialogOpen}
-        isOpen={isDialogOpen}
-        isSignIn={isSignIn}
-      />
     </div>
   );
 };
