@@ -8,6 +8,7 @@ import { useStyles } from "./TicketStyles";
 interface TicketProps {
   ticketModel: TicketViewModel;
   index: any;
+  onTicketClickHandler: any
 }
 
 const Ticket = (props: TicketProps) => {
@@ -24,11 +25,9 @@ const Ticket = (props: TicketProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <Card className={classes.card}>
+          <Card className={classes.card} onClick={props.onTicketClickHandler}>
             <CardHeader
-              title={props.ticketModel.title}
-              subheader={props.ticketModel.creationDate}
-            />
+              title={props.ticketModel.title}/>
           </Card>
         </div>
       )}

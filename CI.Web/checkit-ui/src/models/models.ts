@@ -31,6 +31,8 @@ export interface TicketViewModel {
   ticketId: string;
   title: string;
   creationDate: string;
+  description: string;
+  type: string;
 }
 
 export interface CreateColumnViewModel {

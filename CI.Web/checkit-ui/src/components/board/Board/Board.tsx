@@ -6,20 +6,22 @@ import { SortColumn } from "../../../actions/board/BoardActions";
 import TicketList from "../TicketList/TicketList";
 import { useStyles } from "./BoardStyles";
 import { connect } from "react-redux";
+import Header from "../../startup/Header/Header";
 
 const mapStateToProps = (state: BoardViewModel) => {
   return {
-    state: state
+    state: state,
   };
 };
 
 const mapDispatchToProps = {
-  SortColumn
+  SortColumn,
 };
 
 const Board = (props: any) => {
   const classes = useStyles();
 
+  
   const { SortColumn, state } = props;
 
   const onDragEnd = (result: any) => {
@@ -39,28 +41,33 @@ const Board = (props: any) => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div>
-        <div className={classes.listContainer}>
-          {state.board.columns.map((column: ColumnViewModel) => (
-            <TicketList
-              columnId={column.columnId}
-              key={column.columnId}
-              title={column.title}
-              tickets={column.tickets}
-            />
-          ))}
+    <div>
+      <Header />
+      <div className={classes.container}>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div>
+            <div className={classes.listContainer}>
+              {state.board.columns.map((column: ColumnViewModel) => (
+                <TicketList
+                  columnId={column.columnId}
+                  key={column.columnId}
+                  title={column.title}
+                  tickets={column.tickets}
+                />
+              ))}
 
-          <div className={classes.buttonContainer}>
-            <BoardActionButton boardId={state.board.boardId} isList={true} />
+              <div className={classes.buttonContainer}>
+                <BoardActionButton
+                  boardId={state.board.boardId}
+                  isList={true}
+                />
+              </div>
+            </div>
           </div>
-        </div>
+        </DragDropContext>
       </div>
-    </DragDropContext>
+    </div>
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Board);
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
