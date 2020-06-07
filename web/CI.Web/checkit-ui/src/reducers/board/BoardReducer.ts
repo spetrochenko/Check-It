@@ -1,17 +1,25 @@
 import {
   BoardViewModel,
   ColumnViewModel,
-  TicketViewModel
+  TicketViewModel,
 } from "../../models/models";
 import {
   ADD_COLUMN,
-  DRAG_HAPPENED
+  DRAG_HAPPENED,
+  EDIT_TICKET,
 } from "../../actions/board/BoardActionConstants";
 
 import { ADD_TICKET } from "../../actions/column/ColumnActionConstants";
 
 let columnId = 2;
-let ticketId = 5;
+let ticketId = 8;
+
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0");
+let yyyy = today.getFullYear();
+
+let todayString = mm + "/" + dd + "/" + yyyy;
 
 const initialState: BoardViewModel = {
   boardId: 1,
@@ -24,14 +32,18 @@ const initialState: BoardViewModel = {
         {
           ticketId: "0",
           title: "ticket0",
-          creationDate: "date0"
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
         },
         {
           ticketId: "1",
           title: "ticket1",
-          creationDate: "date1"
-        }
-      ]
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
+        },
+      ],
     },
     {
       columnId: 1,
@@ -40,42 +52,54 @@ const initialState: BoardViewModel = {
         {
           ticketId: "2",
           title: "ticket2",
-          creationDate: "date2"
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
         },
         {
           ticketId: "3",
           title: "ticket3",
-          creationDate: "date3"
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
         },
         {
           ticketId: "4",
           title: "ticket4",
-          creationDate: "date4"
-        }
-      ]
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
+        },
+      ],
     },
     {
       columnId: 3,
       title: "Resolved",
       tickets: [
         {
-          ticketId: "2",
+          ticketId: "5",
           title: "ticket2",
-          creationDate: "date2"
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
         },
         {
-          ticketId: "3",
+          ticketId: "6",
           title: "ticket3",
-          creationDate: "date3"
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
         },
         {
-          ticketId: "4",
+          ticketId: "7",
           title: "ticket4",
-          creationDate: "date4"
-        }
-      ]
-    }
-  ]
+          creationDate: todayString,
+          description: "some description",
+          type: "task",
+        },
+      ],
+    },
+  ],
 };
 
 export const BoardReducer = (state = initialState, action: any) => {
@@ -84,7 +108,7 @@ export const BoardReducer = (state = initialState, action: any) => {
       const newColumn: ColumnViewModel = {
         columnId: columnId,
         title: action.payload,
-        tickets: []
+        tickets: [],
       };
 
       return { ...state, columns: [...state.columns, newColumn] };
@@ -92,16 +116,18 @@ export const BoardReducer = (state = initialState, action: any) => {
     case ADD_TICKET: {
       const newTicket: TicketViewModel = {
         title: action.payload.title,
-        creationDate: String(Date.now()),
-        ticketId: String(ticketId)
+        creationDate: todayString,
+        ticketId: String(ticketId),
+        description: "",
+        type: "task",
       };
       ticketId += 1;
 
-      const updateColumns = state.columns.map(column => {
+      const updateColumns = state.columns.map((column) => {
         if (column.columnId === action.payload.columnId) {
           return {
             ...column,
-            tickets: [...column.tickets, newTicket]
+            tickets: [...column.tickets, newTicket],
           };
         } else {
           return column;
@@ -116,14 +142,14 @@ export const BoardReducer = (state = initialState, action: any) => {
         droppableIdStart,
         droppableIdEnd,
         droppableIndexStart,
-        droppableIndexEnd
+        droppableIndexEnd,
       } = action.payload;
 
       const newState = state;
 
       if (droppableIdStart === droppableIdEnd) {
         const column: any = state.columns.find(
-          column => droppableIdStart == column.columnId
+          (column) => droppableIdStart == column.columnId
         );
         const ticket = column.tickets.splice(droppableIndexStart, 1);
 
@@ -132,17 +158,32 @@ export const BoardReducer = (state = initialState, action: any) => {
 
       if (droppableIdStart !== droppableIdEnd) {
         const columnStart: any = state.columns.find(
-          column => droppableIdStart == column.columnId
+          (column) => droppableIdStart == column.columnId
         );
         const ticket = columnStart.tickets.splice(droppableIndexStart, 1);
         const columnEnd: any = state.columns.find(
-          column => droppableIdEnd == column.columnId
+          (column) => droppableIdEnd == column.columnId
         );
 
         columnEnd.tickets.splice(droppableIndexEnd, 0, ...ticket);
       }
 
       return newState;
+    }
+
+    case EDIT_TICKET: {
+      const updateColumns = state.columns.map((column) => {
+        if (column.columnId === action.payload.columnId) {
+          return {
+            ...column,
+            tickets: [...column.tickets, action.payload],
+          };
+        } else {
+          return column;
+        }
+      });
+
+      return { ...state, columns: updateColumns };
     }
 
     default:
