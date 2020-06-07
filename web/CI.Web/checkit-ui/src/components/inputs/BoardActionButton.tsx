@@ -36,8 +36,8 @@ export const BoardActionButton = (props: any) => {
         title: title,
         boardId: boardId
       };
-      AddNewColumn(column);
-      setTitle(null);
+      AddNewColumn(column.title);
+      setTitle(title);
     }
 
     return;
@@ -46,7 +46,7 @@ export const BoardActionButton = (props: any) => {
   const handleAddTicket = () => {
     if (title) {
       AddNewTicket(columnId, String(title));
-      setTitle(null);
+      setTitle(title);
     }
 
     return;

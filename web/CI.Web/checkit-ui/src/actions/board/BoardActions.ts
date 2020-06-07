@@ -3,10 +3,12 @@ import {
   DRAG_HAPPENED,
   ADD_BOARD,
   LOAD_BOARDS,
+  EDIT_TICKET,
 } from "./BoardActionConstants";
 import {
   CreateColumnViewModel,
   CreateBoardViewModel,
+  TicketViewModel,
 } from "../../models/models";
 import {
   columnApiController,
@@ -15,11 +17,9 @@ import {
 
 export const AddNewColumn = (columnView: CreateColumnViewModel) => {
   return (dispatch: any) => {
-    columnApiController.createColumn(columnView).then((response) => {
-      dispatch({
-        type: ADD_COLUMN,
-        payload: response.title,
-      });
+    dispatch({
+      type: ADD_COLUMN,
+      payload: columnView,
     });
   };
 };
@@ -45,6 +45,15 @@ export const LoadBoards = () => {
     }, 2000);
   };
 };
+
+export const EditTicket = (ticket: TicketViewModel) => {
+  return (dispatch : any) => {
+    dispatch({
+      type: EDIT_TICKET,
+      payload: ticket,
+    });
+  }
+}
 
 export const SortColumn = (
   droppableIdStart: any,

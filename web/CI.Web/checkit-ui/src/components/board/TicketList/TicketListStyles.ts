@@ -8,6 +8,7 @@ export const useStyles = makeStyles({
       marginTop: 30,
       padding: 8,
       margin: 8,
-      height: "100%"
+      height: "100%",
+      position: "relative"
     }
   });
